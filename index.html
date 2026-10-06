@@ -632,9 +632,11 @@ function syncNotifUI(){
   if($('notifyAwayTime'))$('notifyAwayTime').value=notifCfg.awayTime||'18:00';
   updateNotifStatus();
 }
+const isNativeApp=!!window.AndroidApp;
 function updateNotifStatus(msg){
   const box=$('notificationStatus');if(!box)return;
   if(msg){box.textContent=msg;box.className='notice good';return}
+  if(isNativeApp){box.textContent='✅ Native Android-Benachrichtigungen sind aktiviert.';box.className='notice good';return}
   if(!('Notification' in window)){box.textContent='Dieser Browser unterstützt keine Web-Benachrichtigungen.';box.className='notice';return}
   const p=Notification.permission;
   if(p==='granted'){
@@ -648,27 +650,31 @@ async function swRegistration(){
   try{return await navigator.serviceWorker.register('sw.js')}catch(e){return null}
 }
 async function requestNotifications(){
+  if(isNativeApp){
+    updateNotifStatus('🌿 William ist bereit. Die Benachrichtigungen laufen über Android.');
+    if(notifCfg.welcome) showWilliam('🌿 William Vangeance','Willkommen zurück.','victor-welcome');
+    scheduleHourReminder(); scheduleAwayReminder();
+    return true;
+  }
   if(!('Notification' in window)){updateNotifStatus('Dieser Browser unterstützt keine Web-Benachrichtigungen.');return false}
   if(!window.isSecureContext && location.hostname!=='localhost'){
     updateNotifStatus('Für System-Benachrichtigungen muss diese Seite über HTTPS geöffnet werden (nicht direkt als .html-Datei).');
     return false;
   }
   let p=Notification.permission;
-  if(p!=='granted'){
-    try{p=await Notification.requestPermission()}catch(e){p='denied'}
-  }
+  if(p!=='granted'){try{p=await Notification.requestPermission()}catch(e){p='denied'}}
   if(p==='granted'){
-    await swRegistration();
-    updateNotifStatus('🌿 William ist bereit.');
-    await showWilliam('🌿 William Vangeance', 'Willkommen zurück. Lass uns heute ein wenig Piano üben. 🎹', 'victor-welcome');
-    scheduleHourReminder();
-    scheduleAwayReminder();
-    return true;
+    await swRegistration(); updateNotifStatus('🌿 William ist bereit.');
+    await showWilliam('🌿 William Vangeance','Willkommen zurück. Lass uns heute ein wenig Piano üben. 🎹','victor-welcome');
+    scheduleHourReminder(); scheduleAwayReminder(); return true;
   }
-  updateNotifStatus('Die Berechtigung wurde nicht erteilt.');
-  return false;
+  updateNotifStatus('Die Berechtigung wurde nicht erteilt.'); return false;
 }
 async function showWilliam(title,body,tag){
+  if(isNativeApp){
+    const t=tag==='victor-welcome'?'welcome':tag==='victor-hour'?'hour':tag==='victor-praise'?'praise':tag==='victor-away'?'away':'test';
+    try{AndroidApp.showWilliam(t);updateNotifStatus('🌿 William hat dir geschrieben.');return true}catch(e){return false}
+  }
   if(!('Notification' in window)||Notification.permission!=='granted')return false;
   const reg=await swRegistration();
   try{
@@ -689,6 +695,7 @@ async function cancelScheduled(tag){
   try{const reg=await swRegistration();if(!reg)return;const list=await reg.getNotifications({tag,includeTriggered:true});list.forEach(n=>n.close())}catch(e){}
 }
 function scheduleHourReminder(){
+  if(isNativeApp){if(window.AndroidApp)AndroidApp.scheduleHourReminder(!!notifCfg.hour && !practiceStarted);return}
   if(hourReminderTimer)clearTimeout(hourReminderTimer);hourReminderTimer=null;
   if(!notifCfg.hour||practiceStarted)return;
   const when=openedAt+60*60*1000;
@@ -697,13 +704,14 @@ function scheduleHourReminder(){
   scheduleWilliam('⏰ William erinnert dich','Du bist schon eine Stunde hier. Wie wäre es mit deinem ersten Takt? 🎹🌿','victor-hour',when);
 }
 function scheduleAwayReminder(){
+  if(isNativeApp){if(window.AndroidApp)AndroidApp.scheduleDailyReminder(!!notifCfg.away,notifCfg.awayTime||'18:00');return}
   if(!notifCfg.away||!notifCfg.awayTime)return;
   const [hh,mm]=String(notifCfg.awayTime).split(':').map(Number);if(!Number.isFinite(hh)||!Number.isFinite(mm))return;
   const d=new Date();d.setHours(hh,mm,0,0);if(d<=new Date())d.setDate(d.getDate()+1);
   scheduleWilliam('🌙 William wartet auf dich','Dein Piano wartet noch auf dich. Nur ein kleiner Abschnitt? 🎹','victor-away',d.getTime());
 }
 function markPracticeStarted(){
-  if(practiceStarted)return;practiceStarted=true;if(hourReminderTimer){clearTimeout(hourReminderTimer);hourReminderTimer=null}cancelScheduled('victor-hour');
+  if(practiceStarted)return;practiceStarted=true;if(window.AndroidApp)AndroidApp.practiceStarted();if(hourReminderTimer){clearTimeout(hourReminderTimer);hourReminderTimer=null}cancelScheduled('victor-hour');
 }
 function notifyPraise(){if(notifCfg.praise)showWilliam('🎹 William ist stolz auf dich','Sehr gut. Ein weiterer Schritt für Victor’s Piano Solo ist geschafft. 🌿✨','victor-praise')}
 function bindNotificationUI(){
@@ -716,7 +724,10 @@ function bindNotificationUI(){
 // Start a one-hour reminder as soon as the page is opened. It is cancelled when an exercise starts.
 function initWilliamNotifications(){
   bindNotificationUI();
-  if('Notification' in window && Notification.permission==='granted'){
+  if(isNativeApp){
+    if(notifCfg.welcome)showWilliam('🌿 William Vangeance','Willkommen zurück. Schön, dass du wieder da bist. 🎹','victor-welcome');
+    scheduleHourReminder();scheduleAwayReminder();
+  } else if('Notification' in window && Notification.permission==='granted'){
     if(notifCfg.welcome)showWilliam('🌿 William Vangeance','Willkommen zurück. Schön, dass du wieder da bist. 🎹','victor-welcome');
     scheduleHourReminder();scheduleAwayReminder();
   }
