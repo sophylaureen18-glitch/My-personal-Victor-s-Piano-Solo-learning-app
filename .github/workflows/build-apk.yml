@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - 'index.html'
       - 'app/**'
       - 'build.gradle'
       - 'settings.gradle'
