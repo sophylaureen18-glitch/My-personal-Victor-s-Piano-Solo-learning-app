@@ -32,5 +32,9 @@ public class NotificationReceiver extends BroadcastReceiver {
          .setCategory(Notification.CATEGORY_REMINDER);
         if(android.os.Build.VERSION.SDK_INT<26)b.setPriority(Notification.PRIORITY_DEFAULT);
         nm.notify((type+System.currentTimeMillis()).hashCode(),b.build());
+        if("away".equals(type)){
+            Calendar c=Calendar.getInstance(); c.add(Calendar.DAY_OF_YEAR,1); c.set(Calendar.HOUR_OF_DAY,c.get(Calendar.HOUR_OF_DAY)); 
+            // The next daily reminder is scheduled by the app when it is opened again.
+        }
     }
 }
