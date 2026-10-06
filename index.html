@@ -369,7 +369,7 @@ document.querySelectorAll('.modecard').forEach(card=>card.addEventListener('clic
  state.mode=card.dataset.mode; updateHome();
 }));
 $('hand').onchange=e=>state.hand=e.target.value;
-$('duration').onchange=e=>state.duration=Number(e.target.value);
+if($('duration')) $('duration').onchange=e=>state.duration=Number(e.target.value);
 
 const practiceDays=JSON.parse(localStorage.getItem('victorPracticeDays')||'[]');
 function localKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
