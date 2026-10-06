@@ -719,7 +719,7 @@ function bindNotificationUI(){
   ['welcome','hour','praise','away'].forEach(k=>{const id='notify'+k.charAt(0).toUpperCase()+k.slice(1);const e=$(id);if(e)e.onchange=()=>{notifCfg[k]=e.checked;saveNotifCfg();if(k==='hour')scheduleHourReminder();if(k==='away')scheduleAwayReminder()}});
   $('notifyAwayTime').onchange=e=>{notifCfg.awayTime=e.target.value;saveNotifCfg();scheduleAwayReminder()};
   $('enableNotifications').onclick=requestNotifications;
-  $('testNotification').onclick=async()=>{if(!('Notification' in window)||Notification.permission!=='granted'){const ok=await requestNotifications();if(!ok)return}else await showWilliam('🌿 William','Ich bin da. Jetzt eine kleine Piano-Runde? 🎹','victor-test')};
+  $('testNotification').onclick=async()=>{await showWilliam('🌿 William','Ich bin da. Jetzt eine kleine Piano-Runde? 🎹','victor-test')};
 }
 // Start a one-hour reminder as soon as the page is opened. It is cancelled when an exercise starts.
 function initWilliamNotifications(){
