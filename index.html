@@ -188,6 +188,8 @@ footer{text-align:center;color:var(--muted);padding:20px}
 <button class="primary" id="timerStart">▶ Start</button><button id="timerReset">↺ Zurücksetzen</button>
 </div>
 </div>
+
+<div class="card" style="margin-top:14px"><div class="actions"><button class="primary" id="openPerformanceMode">🎭 Auftrittsmodus</button><button id="continuePracticeBtn">▶ Weiterüben</button></div></div>
 </section>
 
 <!-- EINSTELLUNGEN -->
@@ -735,6 +737,34 @@ function initWilliamNotifications(){
 initWilliamNotifications();
 
 makeKeyboard();renderProgress();drawTimer();updateHome();renderSchool();renderCalendar();renderLearnPath();
+</script>
+
+<section class="page" id="performanceMode">
+<div class="card"><span class="badge">🎭 AUFTRITTSMODUS</span><h2>Victor’s Piano Solo · Auftritt</h2><p class="muted">Kompletter Durchlauf ohne Noten und ohne Takt-Hilfe. Zieltempo: 72 BPM.</p>
+<div class="actions"><button class="primary" id="performanceStart">▶ Auftritt starten</button><button id="performanceCancel">← Zurück</button></div>
+<div class="notice" id="performanceLive">Bereit für den kompletten Durchlauf.</div>
+<div id="performanceResult" style="display:none;margin-top:12px"><b>Auftritt beendet.</b><div class="muted" id="performanceVerdict">Dein Durchlauf ist beendet.</div></div>
+</div></section>
+<section class="page" id="continueAfterChristmas"><div class="card"><span class="badge">WEITERÜBEN</span><h2>🎹 Victor’s Piano Solo bleibt bei dir</h2><p>Der Weihnachtsplan endet am 24.12. – dein Klaviertraining aber nicht.</p><div class="actions"><button class="primary" id="continuePracticeBtn2">▶ Weiterüben</button><button id="repeatDifficultBtn">⚠️ Schwierige Stellen</button><button id="fullRunBtn">🎼 Ganzes Stück</button></div></div></section>
+
+<script>
+(function(){
+ const open=document.getElementById('openPerformanceMode'),start=document.getElementById('performanceStart'),cancel=document.getElementById('performanceCancel'),live=document.getElementById('performanceLive'),result=document.getElementById('performanceResult'),verdict=document.getElementById('performanceVerdict');
+ let running=false,startedAt=0;
+ open?.addEventListener('click',()=>page('performanceMode'));
+ cancel?.addEventListener('click',()=>page('home'));
+ start?.addEventListener('click',()=>{if(!running){running=true;startedAt=Date.now();result&&(result.style.display='none');live&&(live.innerHTML='<b>🎹 Auftritt läuft.</b> Keine Noten. Keine Takt-Hilfe. Zieltempo: <b>72 BPM</b>. Spiele jetzt von Anfang bis Ende.');start.textContent='⏹ Auftritt beenden';}else{running=false;const sec=Math.max(1,Math.round((Date.now()-startedAt)/1000));live&&(live.innerHTML='<b>Auftritt beendet.</b> Dauer: '+Math.floor(sec/60)+' min '+(sec%60)+' s.');result&&(result.style.display='');verdict&&(verdict.textContent='Dein kompletter Durchlauf ist beendet.');start.textContent='▶ Auftritt starten';}});
+ document.getElementById('continuePracticeBtn')?.addEventListener('click',()=>page('lesson'));
+ document.getElementById('continuePracticeBtn2')?.addEventListener('click',()=>page('lesson'));
+ document.getElementById('repeatDifficultBtn')?.addEventListener('click',()=>page('lesson'));
+ document.getElementById('fullRunBtn')?.addEventListener('click',()=>page('performanceMode'));
+})();
+</script>
+<script>
+(function(){
+ function initHomeWallpaper(){try{const home=document.getElementById('home');if(home&&typeof setWallpaper==='function')setWallpaper('home');}catch(e){}}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initHomeWallpaper,{once:true});else initHomeWallpaper();
+})();
 </script>
 </body>
 </html>
