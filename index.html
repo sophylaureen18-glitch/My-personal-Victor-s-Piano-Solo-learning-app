@@ -521,6 +521,10 @@ $('startBtn').onclick=()=>{
  if(state.mode==='free'){startFree();page('free');return;}
  if(state.mode==='learn'){
   const todayPlan=planForDate(new Date());
+  if(/rechte hand/i.test(todayPlan.task)) state.hand='Rechte Hand';
+  else if(/linke hand/i.test(todayPlan.task)) state.hand='Linke Hand';
+  else if(/beide hände/i.test(todayPlan.task)) state.hand='Beide Hände';
+  const handSelect=$('hand'); if(handSelect) handSelect.value=state.hand;
   if(todayPlan.section!==null && todayPlan.section!==undefined){
    state.mode='learn';state.section=todayPlan.section;state.retryNow=false;prepareLesson();page('lesson');return;
   }
