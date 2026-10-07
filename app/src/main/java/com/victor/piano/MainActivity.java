@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
         WebSettings s=webView.getSettings();
         s.setJavaScriptEnabled(true); s.setDomStorageEnabled(true); s.setDatabaseEnabled(true);
         s.setMediaPlaybackRequiresUserGesture(false); s.setBuiltInZoomControls(false); s.setDisplayZoomControls(false);
-        s.setLoadWithOverviewMode(false); s.setUseWideViewPort(false); s.setCacheMode(WebSettings.LOAD_DEFAULT);
+        s.setLoadWithOverviewMode(false); s.setUseWideViewPort(false); s.setCacheMode(WebSettings.LOAD_NO_CACHE);
         s.setAllowFileAccess(false); s.setAllowContentAccess(false);
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder().addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this)).build();
         webView.setWebViewClient(new WebViewClient(){
