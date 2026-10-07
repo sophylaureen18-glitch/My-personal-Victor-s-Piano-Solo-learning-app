@@ -1003,7 +1003,7 @@ const _updateHome=updateHome; updateHome=function(){_updateHome();translateDynam
 </script>
 <style id="victorFinalFixes">
 .performance-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.performance-bar button{flex:1;min-width:150px}
-.performance-active .card:not(.performance-main),.performance-active header,.performance-active footer{display:none!important}
+.performance-active header,.performance-active footer{display:none!important}.performance-active main>.card:not(:has(#scoreCrop)):not(:has(#performanceBar)){display:none!important}.performance-active #lessonPage .card:has(#scoreCrop),.performance-active #lessonPage .card:has(#performanceBar){display:block!important}
 .performance-active main{max-width:1000px}.performance-active #lessonPage{display:block!important}
 .performance-active #sessionTimerCard{display:none}.performance-active .score-crop{height:310px!important}
 .detect-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.detect-chip{padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.16)}
