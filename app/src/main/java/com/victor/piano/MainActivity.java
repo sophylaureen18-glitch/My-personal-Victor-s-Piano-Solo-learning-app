@@ -1,7 +1,8 @@
 package com.victor.piano;
 
 import android.Manifest;
-import android.app.*;\nimport android.graphics.Color;
+import android.app.*;
+import android.graphics.Color;
 import android.content.*;
 import android.content.pm.PackageManager;
 import android.os.*;
@@ -26,7 +27,8 @@ public class MainActivity extends Activity {
         if(Build.VERSION.SDK_INT>=33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)
             requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},REQ_NOTIFICATIONS);
 
-        webView=new WebView(this);\n        webView.setBackgroundColor(Color.TRANSPARENT);
+        webView=new WebView(this);
+        webView.setBackgroundColor(Color.TRANSPARENT);
         WebSettings s=webView.getSettings();
         s.setJavaScriptEnabled(true); s.setDomStorageEnabled(true); s.setDatabaseEnabled(true);
         s.setMediaPlaybackRequiresUserGesture(false); s.setBuiltInZoomControls(false); s.setDisplayZoomControls(false);
