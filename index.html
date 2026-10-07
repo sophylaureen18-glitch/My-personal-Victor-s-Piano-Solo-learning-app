@@ -1101,6 +1101,14 @@ const _renderSchool=renderSchool;renderSchool=function(){_renderSchool();transla
 const _renderLearnPath=renderLearnPath;renderLearnPath=function(){_renderLearnPath();translateDynamic()};
 const _updateHome=updateHome;updateHome=function(){_updateHome();translateDynamic()};
 window.addEventListener('load',()=>setTimeout(translateDynamic,0));
+<script id="victorLanguageButtons">
+$('langDe')?.addEventListener('click',()=>{localStorage.setItem('victorLang','de');location.reload()});
+$('langEn')?.addEventListener('click',()=>setLanguage('en'));
+$('langEs')?.addEventListener('click',()=>setLanguage('es'));
+$('langFil')?.addEventListener('click',()=>setLanguage('fil'));
+$('langAr')?.addEventListener('click',()=>setLanguage('ar'));
+if(localStorage.getItem('victorLang')&&localStorage.getItem('victorLang')!=='de')setTimeout(()=>setLanguage(localStorage.getItem('victorLang')),0);
+</script>
 <style id="victorFinalFixes">
 .performance-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.performance-bar button{flex:1;min-width:150px}
 .performance-active .card:not(.performance-main),.performance-active header,.performance-active footer{display:none!important}
