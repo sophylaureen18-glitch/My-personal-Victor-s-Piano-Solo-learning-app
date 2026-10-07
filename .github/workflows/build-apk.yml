@@ -46,3 +46,5 @@ jobs:
           name: victors-piano-solo-app
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+# Triggered by the latest app update so the new Android APK is built.
