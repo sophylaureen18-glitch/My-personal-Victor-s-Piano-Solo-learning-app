@@ -1001,5 +1001,136 @@ const _renderSchool=renderSchool; renderSchool=function(){_renderSchool();transl
 const _renderLearnPath=renderLearnPath; renderLearnPath=function(){_renderLearnPath();translateDynamic()};
 const _updateHome=updateHome; updateHome=function(){_updateHome();translateDynamic()};
 </script>
-</body>
+<style id="victorFinalFixes">
+.performance-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.performance-bar button{flex:1;min-width:150px}
+.performance-active .card:not(.performance-main),.performance-active header,.performance-active footer{display:none!important}
+.performance-active main{max-width:1000px}.performance-active #lessonPage{display:block!important}
+.performance-active #sessionTimerCard{display:none}.performance-active .score-crop{height:310px!important}
+.detect-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.detect-chip{padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.16)}
+@media(max-width:600px){.detect-grid{grid-template-columns:1fr}}
+</style>
+<script id="victorFinalLogic">
+(function(){
+  const V={midiAccess:null,midiInputs:[],held:new Set(),memoryEvents:[],performance:false,lastMidi:0};
+  window.VictorFinal=V;
+
+  function setText(id,t){const e=document.getElementById(id);if(e)e.textContent=t}
+  function addLessonUI(){
+    const actions=document.querySelector('#lessonPage .card .actions');
+    if(actions&&!document.getElementById('lessonMidi')){
+      const m=document.createElement('button');m.id='lessonMidi';m.textContent='🎹 Keyboard verbinden';actions.appendChild(m);
+      m.onclick=()=>V.connectMIDI();
+    }
+    const card=document.querySelector('#lessonPage .card:last-of-type');
+    if(card&&!document.getElementById('performanceBar')){
+      const bar=document.createElement('div');bar.id='performanceBar';bar.className='performance-bar';
+      bar.innerHTML='<button id="performanceStart">🎭 Auftrittsmodus starten</button><button id="performanceStop" style="display:none">↩ Lernmodus</button>';
+      card.appendChild(bar);
+      document.getElementById('performanceStart').onclick=()=>V.startPerformance();
+      document.getElementById('performanceStop').onclick=()=>V.stopPerformance();
+    }
+    const listenCard=document.querySelector('#lessonPage .card h2');
+    if(listenCard&&listenCard.textContent.includes('Ich höre mit')&&!document.getElementById('detectGrid')){
+      const g=document.createElement('div');g.id='detectGrid';g.className='detect-grid';
+      g.innerHTML='<div class="detect-chip"><strong>🎯 Letzter Ton</strong><div id="lastCorrectness">Warte auf einen Ton…</div></div><div class="detect-chip"><strong>🎹 Gleichzeitig</strong><div id="detectedChord">—</div></div>';
+      listenCard.parentElement.appendChild(g);
+    }
+  }
+
+  V.connectMIDI=async function(){
+    if(!navigator.requestMIDIAccess){setText('lessonStatus','MIDI wird in diesem Browser nicht unterstützt.');return false}
+    try{
+      V.midiAccess=await navigator.requestMIDIAccess();
+      V.midiInputs=[...V.midiAccess.inputs.values()];
+      V.midiInputs.forEach(input=>input.onmidimessage=V.onMIDI);
+      const names=V.midiInputs.map(x=>x.name||'Keyboard').join(', ');
+      setText('lessonStatus',V.midiInputs.length?'🎹 Keyboard verbunden: '+names:'Kein MIDI-Keyboard gefunden.');
+      const b=document.getElementById('lessonMidi');if(b)b.textContent=V.midiInputs.length?'🎹 Keyboard verbunden':'🎹 Keyboard verbinden';
+      return !!V.midiInputs.length;
+    }catch(e){setText('lessonStatus','MIDI-Verbindung konnte nicht geöffnet werden.');return false}
+  };
+  V.onMIDI=function(ev){
+    const d=ev.data||[],status=d[0]&0xf0,n=d[1],vel=d[2]||0;
+    if(status===0x90&&vel>0){V.held.add(n);V.registerNotes([...V.held], 'MIDI')}
+    else if(status===0x80||(status===0x90&&vel===0)){V.held.delete(n)}
+  };
+  V.registerNotes=function(midis,source){
+    if(!midis.length)return;
+    const names=[...new Set(midis)].sort((a,b)=>a-b).map(pitchName);
+    const now=performance.now();
+    if(now-V.lastMidi<35&&source==='MIDI')return;
+    V.lastMidi=now; V.memoryEvents.push({midis:[...midis],time:Date.now(),source});
+    if(V.memoryEvents.length>300)V.memoryEvents.shift();
+    state.memoryAttempted=true;
+    const chord=names.length>1;
+    setText('lessonDetected',names.join(' + '));
+    setText('detectedChord',names.join(' + '));
+    setText('lastCorrectness',chord?'Mehrere Töne gleichzeitig erkannt.':'Ton sauber erkannt.');
+    const msg=chord?'🎹 Akkord erkannt: '+names.join(' + '):'🎯 Ton erkannt: '+names[0];
+    setText('lessonMessage',msg);
+    const lm=document.getElementById('lessonMessage');if(lm)lm.className='notice good';
+  };
+
+  V.startPerformance=function(){
+    V.performance=true;document.body.classList.add('performance-active');
+    document.getElementById('performanceStart').style.display='none';
+    document.getElementById('performanceStop').style.display='';
+    setText('lessonMessage','🎭 Auftrittsmodus: Noten ausblenden, keine Lernhinweise. Spiele den Abschnitt vollständig.');
+    const sc=document.getElementById('scoreCrop');if(sc)sc.classList.add('hidden');
+    const h=document.getElementById('hideLessonScore');if(h)h.style.display='none';
+  };
+  V.stopPerformance=function(){
+    V.performance=false;document.body.classList.remove('performance-active');
+    document.getElementById('performanceStart').style.display='';
+    document.getElementById('performanceStop').style.display='none';
+    const h=document.getElementById('hideLessonScore');if(h)h.style.display='';
+    setText('lessonMessage','Lernmodus wieder aktiv.');
+  };
+
+  V.micStart=async function(){
+    if(state.mic){stopMic();return}
+    if(!navigator.mediaDevices?.getUserMedia){setText('lessonStatus','Mikrofon wird nicht unterstützt.');return}
+    try{
+      state.mic=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+      state.ctx=new(window.AudioContext||window.webkitAudioContext)();
+      const src=state.ctx.createMediaStreamSource(state.mic);state.analyser=state.ctx.createAnalyser();state.analyser.fftSize=4096;src.connect(state.analyser);
+      document.getElementById('lessonDot')?.classList.add('on');setText('lessonStatus','🎙️ Ich höre zu …');
+      document.getElementById('lessonMic').textContent='⏹ Mikrofon stoppen';V.micLoop();
+    }catch(e){setText('lessonStatus','Mikrofonzugriff nicht möglich.')}
+  };
+  V.micLoop=function(){
+    if(!state.analyser)return;
+    const buf=new Float32Array(state.analyser.fftSize);state.analyser.getFloatTimeDomainData(buf);
+    const p=autocorr(buf,state.ctx.sampleRate);
+    if(p>0){
+      const midi=Math.round(69+12*Math.log2(p/440));
+      if(midi>=21&&midi<=108){
+        V.registerNotes([midi],'MIC');
+        const freq=440*Math.pow(2,(midi-69)/12),cents=Math.round(1200*Math.log2(p/freq));
+        const meter=document.getElementById('lessonMeter');if(meter)meter.style.width=Math.max(2,Math.min(100,100-Math.abs(cents)))+'%';
+      }
+    }
+    state.raf=requestAnimationFrame(V.micLoop);
+  };
+
+  V.refreshTranslation=function(){
+    if(localStorage.getItem('victorLang')!=='en')return;
+    const dict=Object.assign({},translations.en,fallbackEnglish,dynamicEnglish);
+    document.querySelectorAll('body *').forEach(el=>{
+      if(el.children.length===0){
+        const raw=el.textContent.trim();
+        if(dict[raw])el.textContent=dict[raw];
+        else for(const [de,en] of Object.entries(dict))if(raw.startsWith(de+' · ')){el.textContent=en+raw.slice(de.length);break}
+      }
+      for(const a of ['title','aria-label']){const v=el.getAttribute(a);if(v&&dict[v])el.setAttribute(a,dict[v])}
+    });
+  };
+
+  addLessonUI();
+  const lm=document.getElementById('lessonMic');if(lm){lm.onclick=()=>V.micStart()}
+  const oldPrepare=window.prepareLesson;
+  window.prepareLesson=function(){oldPrepare();addLessonUI();V.memoryEvents=[];if(V.performance)V.stopPerformance();V.refreshTranslation()}
+  V.refreshTranslation();
+})();
+</script></body>
 </html>
