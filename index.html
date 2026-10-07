@@ -1003,134 +1003,44 @@ const _updateHome=updateHome; updateHome=function(){_updateHome();translateDynam
 </script>
 <style id="victorFinalFixes">
 .performance-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.performance-bar button{flex:1;min-width:150px}
-.performance-active header,.performance-active footer{display:none!important}.performance-active main>.card:not(:has(#scoreCrop)):not(:has(#performanceBar)){display:none!important}.performance-active #lessonPage .card:has(#scoreCrop),.performance-active #lessonPage .card:has(#performanceBar){display:block!important}
+.performance-active .card:not(.performance-main),.performance-active header,.performance-active footer{display:none!important}
 .performance-active main{max-width:1000px}.performance-active #lessonPage{display:block!important}
 .performance-active #sessionTimerCard{display:none}.performance-active .score-crop{height:310px!important}
 .detect-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.detect-chip{padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.16)}
-@media(max-width:600px){.detect-grid{grid-template-columns:1fr}}
+.reference-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.reference-bar button{flex:1;min-width:180px}.reference-status{margin-top:8px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.detect-grid{grid-template-columns:1fr}.reference-bar{flex-direction:column}}
 </style>
 <script id="victorFinalLogic">
 (function(){
-  const V={midiAccess:null,midiInputs:[],held:new Set(),memoryEvents:[],performance:false,lastMidi:0};
-  window.VictorFinal=V;
-
-  function setText(id,t){const e=document.getElementById(id);if(e)e.textContent=t}
-  function addLessonUI(){
-    const actions=document.querySelector('#lessonPage .card .actions');
-    if(actions&&!document.getElementById('lessonMidi')){
-      const m=document.createElement('button');m.id='lessonMidi';m.textContent='🎹 Keyboard verbinden';actions.appendChild(m);
-      m.onclick=()=>V.connectMIDI();
-    }
-    const card=document.querySelector('#lessonPage .card:last-of-type');
-    if(card&&!document.getElementById('performanceBar')){
-      const bar=document.createElement('div');bar.id='performanceBar';bar.className='performance-bar';
-      bar.innerHTML='<button id="performanceStart">🎭 Auftrittsmodus starten</button><button id="performanceStop" style="display:none">↩ Lernmodus</button>';
-      card.appendChild(bar);
-      document.getElementById('performanceStart').onclick=()=>V.startPerformance();
-      document.getElementById('performanceStop').onclick=()=>V.stopPerformance();
-    }
-    const listenCard=document.querySelector('#lessonPage .card h2');
-    if(listenCard&&listenCard.textContent.includes('Ich höre mit')&&!document.getElementById('detectGrid')){
-      const g=document.createElement('div');g.id='detectGrid';g.className='detect-grid';
-      g.innerHTML='<div class="detect-chip"><strong>🎯 Letzter Ton</strong><div id="lastCorrectness">Warte auf einen Ton…</div></div><div class="detect-chip"><strong>🎹 Gleichzeitig</strong><div id="detectedChord">—</div></div>';
-      listenCard.parentElement.appendChild(g);
-    }
-  }
-
-  V.connectMIDI=async function(){
-    if(!navigator.requestMIDIAccess){setText('lessonStatus','MIDI wird in diesem Browser nicht unterstützt.');return false}
-    try{
-      V.midiAccess=await navigator.requestMIDIAccess();
-      V.midiInputs=[...V.midiAccess.inputs.values()];
-      V.midiInputs.forEach(input=>input.onmidimessage=V.onMIDI);
-      const names=V.midiInputs.map(x=>x.name||'Keyboard').join(', ');
-      setText('lessonStatus',V.midiInputs.length?'🎹 Keyboard verbunden: '+names:'Kein MIDI-Keyboard gefunden.');
-      const b=document.getElementById('lessonMidi');if(b)b.textContent=V.midiInputs.length?'🎹 Keyboard verbunden':'🎹 Keyboard verbinden';
-      return !!V.midiInputs.length;
-    }catch(e){setText('lessonStatus','MIDI-Verbindung konnte nicht geöffnet werden.');return false}
-  };
-  V.onMIDI=function(ev){
-    const d=ev.data||[],status=d[0]&0xf0,n=d[1],vel=d[2]||0;
-    if(status===0x90&&vel>0){V.held.add(n);V.registerNotes([...V.held], 'MIDI')}
-    else if(status===0x80||(status===0x90&&vel===0)){V.held.delete(n)}
-  };
-  V.registerNotes=function(midis,source){
-    if(!midis.length)return;
-    const names=[...new Set(midis)].sort((a,b)=>a-b).map(pitchName);
-    const now=performance.now();
-    if(now-V.lastMidi<35&&source==='MIDI')return;
-    V.lastMidi=now; V.memoryEvents.push({midis:[...midis],time:Date.now(),source});
-    if(V.memoryEvents.length>300)V.memoryEvents.shift();
-    state.memoryAttempted=true;
-    const chord=names.length>1;
-    setText('lessonDetected',names.join(' + '));
-    setText('detectedChord',names.join(' + '));
-    setText('lastCorrectness',chord?'Mehrere Töne gleichzeitig erkannt.':'Ton sauber erkannt.');
-    const msg=chord?'🎹 Akkord erkannt: '+names.join(' + '):'🎯 Ton erkannt: '+names[0];
-    setText('lessonMessage',msg);
-    const lm=document.getElementById('lessonMessage');if(lm)lm.className='notice good';
-  };
-
-  V.startPerformance=function(){
-    V.performance=true;document.body.classList.add('performance-active');
-    document.getElementById('performanceStart').style.display='none';
-    document.getElementById('performanceStop').style.display='';
-    setText('lessonMessage','🎭 Auftrittsmodus: Noten ausblenden, keine Lernhinweise. Spiele den Abschnitt vollständig.');
-    const sc=document.getElementById('scoreCrop');if(sc)sc.classList.add('hidden');
-    const h=document.getElementById('hideLessonScore');if(h)h.style.display='none';
-  };
-  V.stopPerformance=function(){
-    V.performance=false;document.body.classList.remove('performance-active');
-    document.getElementById('performanceStart').style.display='';
-    document.getElementById('performanceStop').style.display='none';
-    const h=document.getElementById('hideLessonScore');if(h)h.style.display='';
-    setText('lessonMessage','Lernmodus wieder aktiv.');
-  };
-
-  V.micStart=async function(){
-    if(state.mic){stopMic();return}
-    if(!navigator.mediaDevices?.getUserMedia){setText('lessonStatus','Mikrofon wird nicht unterstützt.');return}
-    try{
-      state.mic=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
-      state.ctx=new(window.AudioContext||window.webkitAudioContext)();
-      const src=state.ctx.createMediaStreamSource(state.mic);state.analyser=state.ctx.createAnalyser();state.analyser.fftSize=4096;src.connect(state.analyser);
-      document.getElementById('lessonDot')?.classList.add('on');setText('lessonStatus','🎙️ Ich höre zu …');
-      document.getElementById('lessonMic').textContent='⏹ Mikrofon stoppen';V.micLoop();
-    }catch(e){setText('lessonStatus','Mikrofonzugriff nicht möglich.')}
-  };
-  V.micLoop=function(){
-    if(!state.analyser)return;
-    const buf=new Float32Array(state.analyser.fftSize);state.analyser.getFloatTimeDomainData(buf);
-    const p=autocorr(buf,state.ctx.sampleRate);
-    if(p>0){
-      const midi=Math.round(69+12*Math.log2(p/440));
-      if(midi>=21&&midi<=108){
-        V.registerNotes([midi],'MIC');
-        const freq=440*Math.pow(2,(midi-69)/12),cents=Math.round(1200*Math.log2(p/freq));
-        const meter=document.getElementById('lessonMeter');if(meter)meter.style.width=Math.max(2,Math.min(100,100-Math.abs(cents)))+'%';
-      }
-    }
-    state.raf=requestAnimationFrame(V.micLoop);
-  };
-
-  V.refreshTranslation=function(){
-    if(localStorage.getItem('victorLang')!=='en')return;
-    const dict=Object.assign({},translations.en,fallbackEnglish,dynamicEnglish);
-    document.querySelectorAll('body *').forEach(el=>{
-      if(el.children.length===0){
-        const raw=el.textContent.trim();
-        if(dict[raw])el.textContent=dict[raw];
-        else for(const [de,en] of Object.entries(dict))if(raw.startsWith(de+' · ')){el.textContent=en+raw.slice(de.length);break}
-      }
-      for(const a of ['title','aria-label']){const v=el.getAttribute(a);if(v&&dict[v])el.setAttribute(a,dict[v])}
-    });
-  };
-
-  addLessonUI();
-  const lm=document.getElementById('lessonMic');if(lm){lm.onclick=()=>V.micStart()}
-  const oldPrepare=window.prepareLesson;
-  window.prepareLesson=function(){oldPrepare();addLessonUI();V.memoryEvents=[];if(V.performance)V.stopPerformance();V.refreshTranslation()}
-  V.refreshTranslation();
+ const V={midiAccess:null,midiInputs:[],held:new Set(),memoryEvents:[],performance:false,lastMidi:0,reference:[],recording:false,attempt:[],attemptStart:0,referenceKey:''};
+ window.VictorFinal=V; const $=id=>document.getElementById(id); const setText=(id,t)=>{const e=$(id);if(e)e.textContent=t};
+ function currentKey(){return 'victorReference_'+state.section+'_'+String(state.hand||'Beide Hände').replace(/\s+/g,'_')}
+ function loadReference(){V.referenceKey=currentKey();try{V.reference=JSON.parse(localStorage.getItem(V.referenceKey)||'[]')}catch(e){V.reference=[]}}
+ function saveReference(){if(V.reference.length)localStorage.setItem(V.referenceKey,JSON.stringify(V.reference))}
+ function addLessonUI(){
+  const actions=document.querySelector('#lessonPage .card .actions');
+  if(actions&&!$('lessonMidi')){const m=document.createElement('button');m.id='lessonMidi';m.textContent='🎹 Keyboard verbinden';actions.appendChild(m);m.onclick=()=>V.connectMIDI()}
+  const card=document.querySelector('#lessonPage .card:last-of-type');
+  if(card&&!$('performanceBar')){const bar=document.createElement('div');bar.id='performanceBar';bar.className='performance-bar';bar.innerHTML='<button id="performanceStart">🎭 Auftrittsmodus starten</button><button id="performanceStop" style="display:none">↩ Lernmodus</button>';card.appendChild(bar);$('performanceStart').onclick=()=>V.startPerformance();$('performanceStop').onclick=()=>V.stopPerformance()}
+  if(card&&!$('referenceBar')){const bar=document.createElement('div');bar.id='referenceBar';bar.className='reference-bar';bar.innerHTML='<button id="referenceStart">🎼 Referenz einspielen</button><button id="referenceClear">🗑 Referenz löschen</button><div id="referenceStatus" class="reference-status"></div>';card.appendChild(bar);$('referenceStart').onclick=()=>V.toggleReference();$('referenceClear').onclick=()=>{V.reference=[];localStorage.removeItem(currentKey());V.updateReferenceStatus()}}
+  const h=document.querySelector('#lessonPage .card h2');if(h&&h.textContent.includes('Ich höre mit')&&!$('detectGrid')){const g=document.createElement('div');g.id='detectGrid';g.className='detect-grid';g.innerHTML='<div class="detect-chip"><strong>🎯 Letzter Ton</strong><div id="lastCorrectness">Warte auf einen Ton…</div></div><div class="detect-chip"><strong>🎹 Gleichzeitig</strong><div id="detectedChord">—</div></div>';h.parentElement.appendChild(g)}
+  loadReference();V.updateReferenceStatus();
+ }
+ V.updateReferenceStatus=function(){const e=$('referenceStatus');if(!e)return;e.textContent=V.recording?'🔴 Referenzaufnahme läuft – spiele den Abschnitt vollständig mit Noten.':V.reference.length?'🟢 Referenz gespeichert: '+V.reference.length+' Töne für '+state.hand+'.':'⚪ Für genaue Fehler-/Auslassungsprüfung zuerst „Referenz einspielen“ verwenden.'}
+ V.connectMIDI=async function(){if(!navigator.requestMIDIAccess){setText('lessonStatus','MIDI wird in diesem Browser nicht unterstützt.');return false}try{V.midiAccess=await navigator.requestMIDIAccess();V.midiInputs=[...V.midiAccess.inputs.values()];V.midiInputs.forEach(i=>i.onmidimessage=V.onMIDI);const names=V.midiInputs.map(x=>x.name||'Keyboard').join(', ');setText('lessonStatus',V.midiInputs.length?'🎹 Keyboard verbunden: '+names:'Kein MIDI-Keyboard gefunden.');const b=$('lessonMidi');if(b)b.textContent=V.midiInputs.length?'🎹 Keyboard verbunden':'🎹 Keyboard verbinden';return !!V.midiInputs.length}catch(e){setText('lessonStatus','MIDI-Verbindung konnte nicht geöffnet werden.');return false}}
+ V.onMIDI=function(ev){const d=ev.data||[],s=d[0]&0xf0,n=d[1],v=d[2]||0;if(s===0x90&&v>0){V.held.add(n);if(V.recording)V.reference.push({midi:n,t:Date.now()-V.attemptStart});V.registerNotes([n],'MIDI')}else if(s===0x80||(s===0x90&&v===0))V.held.delete(n)}
+ V.registerNotes=function(midis,source){const clean=[...new Set(midis)].filter(n=>n>=21&&n<=108).sort((a,b)=>a-b);if(!clean.length)return;const names=clean.map(pitchName),now=performance.now();if(source==='MIDI'&&now-V.lastMidi<35)return;V.lastMidi=now;if(lessonMemoryTest&&!V.recording)V.attempt.push({midis:clean,t:Date.now()-V.attemptStart});state.memoryAttempted=true;setText('lessonDetected',names.join(' + '));setText('detectedChord',names.join(' + '));setText('lastCorrectness',V.reference.length&&!V.recording?V.compareLive(clean):clean.length>1?'Mehrere Töne gleichzeitig erkannt.':'Ton erkannt.');if(!V.performance){setText('lessonMessage',clean.length>1?'🎹 Akkord erkannt: '+names.join(' + '):'🎯 Ton erkannt: '+names[0]);const lm=$('lessonMessage');if(lm)lm.className='notice good'}}
+ V.compareLive=function(midis){if(!V.reference.length)return 'Ton erkannt – keine Referenz vorhanden.';const t=Date.now()-V.attemptStart,near=V.reference.filter(x=>Math.abs(x.t-t)<=220),expected=new Set(near.map(x=>x.midi)),played=new Set(midis),wrong=[...played].filter(n=>!expected.has(n));if(wrong.length)return '❌ Falscher Ton: '+wrong.map(pitchName).join(', ');const missing=[...expected].filter(n=>!played.has(n));if(missing.length)return '⚠️ Fehlt: '+missing.map(pitchName).join(', ');return '✅ Richtig: '+midis.map(pitchName).join(' + ')}
+ V.toggleReference=async function(){if(!V.recording){if(!V.midiInputs.length&&!await V.connectMIDI())return;V.reference=[];V.recording=true;V.attemptStart=Date.now();const b=$('referenceStart');if(b)b.textContent='⏹ Referenz stoppen';V.updateReferenceStatus();setText('lessonStatus','🎼 Referenzaufnahme läuft. Spiele den Abschnitt mit den Noten.')}else{V.recording=false;V.reference.sort((a,b)=>a.t-b.t);saveReference();const b=$('referenceStart');if(b)b.textContent='🎼 Referenz neu einspielen';V.updateReferenceStatus();setText('lessonStatus','🟢 Referenz gespeichert. Falsche und ausgelassene Töne können jetzt erkannt werden.')}}
+ function evaluate(){if(!V.reference.length)return{ready:false,score:0,missing:0,wrong:0};const used=new Set();let matched=0,wrong=0;for(const ev of V.attempt){let bi=-1,bd=261;V.reference.forEach((r,i)=>{if(used.has(i)||r.midi!==ev.midis[0])return;const d=Math.abs(r.t-ev.t);if(d<bd){bd=d;bi=i}});if(bi>=0){used.add(bi);matched++}else wrong++}const missing=V.reference.length-used.size,total=V.reference.length;return{ready:true,score:Math.max(0,Math.round((matched-wrong*.7)/total*100)),missing,wrong}}
+ V.startPerformance=function(){V.performance=true;document.body.classList.add('performance-active');if($('performanceStart'))$('performanceStart').style.display='none';if($('performanceStop'))$('performanceStop').style.display='block';if($('scoreCrop'))$('scoreCrop').classList.add('hidden');if($('hideLessonScore'))$('hideLessonScore').style.display='none';if($('sessionTimerCard'))$('sessionTimerCard').style.display='none';setText('lessonMessage','🎭 Auftrittsmodus – keine Lernhinweise. Spiele den Abschnitt vollständig.')}
+ V.stopPerformance=function(){V.performance=false;document.body.classList.remove('performance-active');if($('performanceStart'))$('performanceStart').style.display='';if($('performanceStop'))$('performanceStop').style.display='none';if($('hideLessonScore'))$('hideLessonScore').style.display='';if($('sessionTimerCard'))$('sessionTimerCard').style.display='';setText('lessonMessage','Lernmodus wieder aktiv.')}
+ V.finishMemory=function(){const r=evaluate();if(!r.ready){setText('lessonMessage','🎼 Für den automatischen Auswendig-Test fehlt noch die Referenz. Spiele den Abschnitt einmal mit Noten über „Referenz einspielen“.');return false}state.memoryAttempted=V.attempt.length>0;state.memoryScore=r.score;state.memoryMissing=r.missing;state.memoryWrong=r.wrong;setText('lessonMessage',r.score>=80&&r.missing<=Math.max(1,Math.ceil(V.reference.length*.1))?'🟢 Auswendig-Test bestanden: '+r.score+'% richtig.':'🔴 Auswendig-Test: '+r.score+'% · '+r.wrong+' falsche · '+r.missing+' ausgelassene Töne.');return true}
+ function replaceDone(){const b=$('markDone');if(!b)return;const n=b.cloneNode(true);b.replaceWith(n);n.onclick=function(){if(!lessonMemoryTest){beginMemoryTest();V.attempt=[];V.attemptStart=Date.now();setText('lessonMessage',V.reference.length?'🧠 Noten ausgeblendet. Spiele jetzt auswendig. Danach „Auswendig prüfen“.':'🎼 Für die genaue Prüfung zuerst eine Referenz aufnehmen.');return}if(!V.finishMemory())return;const r=evaluate();if(!state.memoryAttempted)return;if(r.score<80||r.missing>Math.max(1,Math.ceil(V.reference.length*.1))){state.retry.add(state.section);localStorage.setItem('victorRetrySections',JSON.stringify([...state.retry]));lessonMemoryTest=false;setText('lessonMessage','🔴 Noch nicht sicher genug. '+r.wrong+' falsche, '+r.missing+' ausgelassene Töne. Abschnitt wird wiederholt.');return}recordPracticeDay();state.retry.delete(state.section);localStorage.setItem('victorRetrySections',JSON.stringify([...state.retry]));state.done.add(state.section);notifyPraise();renderProgress();state.retryNow=false;state.pendingRetry=state.retry.size>0;lessonMemoryTest=false;setText('lessonMessage','🟢 Auswendig bestanden! '+r.score+'% richtig – Abschnitt ist sicher gespeichert.');const lm=$('lessonMessage');if(lm)lm.className='notice good'}}
+ V.refreshTranslation=function(){if(localStorage.getItem('victorLang')!=='en')return;const dict=Object.assign({},translations.en,fallbackEnglish,dynamicEnglish);document.querySelectorAll('body *').forEach(el=>{if(el.children.length===0){const raw=el.textContent.trim();if(dict[raw])el.textContent=dict[raw];else for(const [de,en] of Object.entries(dict))if(raw.startsWith(de+' · ')){el.textContent=en+raw.slice(de.length);break}}for(const a of ['title','aria-label','placeholder']){const v=el.getAttribute(a);if(v&&dict[v])el.setAttribute(a,dict[v])}})}
+ addLessonUI();replaceDone();V.refreshTranslation();
+ const oldPrepare=window.prepareLesson;window.prepareLesson=function(){oldPrepare();addLessonUI();V.attempt=[];V.attemptStart=Date.now();if(V.performance)V.stopPerformance();V.refreshTranslation()};
+ const oldLang=window.setLanguage;window.setLanguage=function(lang){oldLang(lang);setTimeout(V.refreshTranslation,0)};
 })();
 </script></body>
 </html>
