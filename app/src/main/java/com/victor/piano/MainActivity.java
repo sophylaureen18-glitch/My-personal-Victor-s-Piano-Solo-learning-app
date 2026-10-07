@@ -7,12 +7,13 @@ import android.content.pm.PackageManager;
 import android.os.*;
 import android.provider.Settings;
 import android.webkit.*;
+import androidx.webkit.WebViewAssetLoader;
 import android.view.Window;
 import java.util.*;
 
 public class MainActivity extends Activity {
     private static final int REQ_AUDIO=1001, REQ_NOTIFICATIONS=1002;
-    private static final String APP_URL="https://sophylaureen18-glitch.github.io/My-personal-Victor-s-Piano-Solo-learning-app/?app=1";
+    private static final String APP_URL="https://appassets.androidplatform.net/assets/index.html";
     private static final String PREFS="victor_notifications";
     private static final String CHANNEL_ID="william";
     private WebView webView;
@@ -31,7 +32,12 @@ public class MainActivity extends Activity {
         s.setMediaPlaybackRequiresUserGesture(false); s.setBuiltInZoomControls(false); s.setDisplayZoomControls(false);
         s.setLoadWithOverviewMode(false); s.setUseWideViewPort(false); s.setCacheMode(WebSettings.LOAD_DEFAULT);
         s.setAllowFileAccess(false); s.setAllowContentAccess(false);
-        webView.setWebViewClient(new WebViewClient());
+        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder().addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this)).build();
+        webView.setWebViewClient(new WebViewClient(){
+            @Override public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request){
+                return assetLoader.shouldInterceptRequest(request.getUrl());
+            }
+        });
         webView.setWebChromeClient(new WebChromeClient(){
             @Override public void onPermissionRequest(final PermissionRequest request){runOnUiThread(()->{
                 boolean audio=false; for(String r:request.getResources()) if(PermissionRequest.RESOURCE_AUDIO_CAPTURE.equals(r)) audio=true;
