@@ -1,7 +1,7 @@
 package com.victor.piano;
 
 import android.Manifest;
-import android.app.*;
+import android.app.*;\nimport android.graphics.Color;
 import android.content.*;
 import android.content.pm.PackageManager;
 import android.os.*;
@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
         if(Build.VERSION.SDK_INT>=33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)
             requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},REQ_NOTIFICATIONS);
 
-        webView=new WebView(this);
+        webView=new WebView(this);\n        webView.setBackgroundColor(Color.TRANSPARENT);
         WebSettings s=webView.getSettings();
         s.setJavaScriptEnabled(true); s.setDomStorageEnabled(true); s.setDatabaseEnabled(true);
         s.setMediaPlaybackRequiresUserGesture(false); s.setBuiltInZoomControls(false); s.setDisplayZoomControls(false);
@@ -39,8 +39,6 @@ public class MainActivity extends Activity {
             }
             @Override public void onPageFinished(WebView view, String url){
                 super.onPageFinished(view,url);
-                // Make the existing page-specific wallpapers visible again while keeping text/cards readable.
-                view.evaluateJavascript("(function(){var s=document.getElementById('androidWallpaperFix');if(!s){s=document.createElement('style');s.id='androidWallpaperFix';s.textContent='body::after{background:linear-gradient(180deg,rgba(9,8,13,.38),rgba(9,8,13,.56)) !important;}body.wall-home::before{opacity:.38 !important;}body.wall-settings::before{opacity:.32 !important;}body.wall-notes::before{opacity:.36 !important;}body.wall-lesson::before{opacity:.38 !important;}body.wall-free::before{opacity:.34 !important;}';document.head.appendChild(s);}})();", null);
             }
         });
         webView.setWebChromeClient(new WebChromeClient(){
