@@ -224,7 +224,7 @@ footer{text-align:center;color:var(--muted);padding:20px}
 <div class="card">
 <h2>🌐 Sprache</h2>
 <p class="muted">Wähle die Sprache der Oberfläche. Lerninhalte und Tagesplan werden mitübersetzt.</p>
-<div class="actions"><button id="langDe" class="primary">🇩🇪 Deutsch</button><button id="langEn">🇬🇧 English</button></div>
+<div class="actions"><button id="langDe" class="primary">🇩🇪 Deutsch</button><button id="langEn">🇬🇧 English</button><button id="langEs">🇪🇸 Español</button><button id="langFil">🇵🇭 Filipino</button><button id="langAr">🇲🇦 العربية</button></div>
 </div>
 
 <div class="card">
@@ -947,60 +947,160 @@ makeKeyboard();renderProgress();drawTimer();updateHome();renderSchool();renderCa
 
 const translations={
  en:{
-  'Mein Weihnachtsprojekt':'My Christmas Project','Dein einfacher persönlicher Trainer für die Extended-Version.':'Your personal trainer for the Extended version.','Deine heutige Übung':'Today’s practice','Ich wähle dir eine kleine, sinnvolle Aufgabe vor, damit du das Stück Schritt für Schritt auswendig lernst.':'I choose a small, useful task so you can learn the piece step by step from memory.','Hauptlernen':'Main learning','Einstellungen':'Settings','Dein Lernpfad':'Your learning path','Wie bei Duolingo: eine kleine Aufgabe nach der anderen.':'Like Duolingo: one small task at a time.','Dein Lernkalender':'Your learning calendar','Von heute bis zum 24.12. siehst du deinen kompletten Weg.':'See your complete path from today to 24 December.','📅 Lernplan öffnen':'📅 Open learning plan','Dein Weg bis Weihnachten':'Your path to Christmas','← Übersicht':'← Overview','Takt auswählen':'Choose measure','Nur dein aktueller Notenausschnitt':'Only the current score section','Takt-Uhr / Tempo':'Meter / tempo','Ich höre mit':'I listen along','Danach auswendig':'Then from memory','Frei':'Free play','Üben':'Practice','Hände':'Hands','Rechte Hand':'Right hand','Linke Hand':'Left hand','Beide Hände':'Both hands','Spiele langsam und achte auf beide Hände.':'Play slowly and watch both hands.','Benachrichtigungen':'Notifications','Sprache':'Language','Notenschule':'Music reading school','Weiter →':'Next →','← Zurück':'← Back'
+  "Mein Weihnachtsprojekt":"My Christmas Project","Dein einfacher persönlicher Trainer für die Extended-Version.":"Your personal trainer for the Extended version.","Hauptlernen":"Main learning","Deine heutige Übung":"Today's practice","Ich wähle dir eine kleine, sinnvolle Aufgabe aus, damit du das Stück Schritt für Schritt auswendig lernst.":"I choose a small, meaningful task so you can learn the piece step by step from memory.","▶ Start":"▶ Start","⚙ Einstellungen":"⚙ Settings","🗺️ Dein Lernpfad":"🗺️ Your learning path","Wie bei Duolingo: eine kleine Aufgabe nach der anderen.":"Like Duolingo: one small task at a time.","⭐ 0 XP":"⭐ 0 XP","0 / 20 XP heute":"0 / 20 XP today","🎼 Erst Noten lernen":"🎼 Learn the notes first","🎼 Noten lesen lernen":"🎼 Learn to read music","0 von 6 Lektionen abgeschlossen":"0 of 6 lessons completed","🎄 Dein Fortschritt im Stück":"🎄 Your progress in the piece","0 von 14 Abschnitten sicher":"0 of 14 sections secure","Wir bauen das Stück langsam auf: kleine Abschnitte → beide Hände → auswendig.":"We build the piece gradually: small sections → both hands → from memory.","📅 Dein Lernkalender":"📅 Your learning calendar","Von heute bis zum 24.12. siehst du deinen kompletten Weg.":"See your complete path from today to 24 December.","📅 Lernplan öffnen":"📅 Open learning plan","📅 LERNPLAN":"📅 LEARNING PLAN","Dein Weg bis Weihnachten":"Your path to Christmas","← Übersicht":"← Overview","Woche 1":"Week 1","← Zurück":"← Back","Hier entscheidest du, was passiert, wenn du auf „Start“ drückst.":"Choose what happens when you press “Start”.","📚 Hauptlernen":"📚 Main learning","Ich gebe dir eine passende Tagesaufgabe vor. Genau das, was du heute üben solltest.":"I give you the right task for today — exactly what you should practise.","🔁 Üben":"🔁 Practice","Du wiederholst Übungen, die wir bereits gelernt haben.":"Repeat exercises you have already learned.","🎹 Frei":"🎹 Free play","Du spielst, was du möchtest. Die Webseite zeigt dir, welche Töne sie erkennt.":"Play whatever you want. The app shows which notes it detects.","🌐 Sprache":"🌐 Language","Wähle die Sprache der Oberfläche. Lerninhalte und Tagesplan werden mitübersetzt.":"Choose the interface language. Learning content and the daily plan are translated too.","🇩🇪 Deutsch":"🇩🇪 German","🇬🇧 English":"🇬🇧 English","🇪🇸 Español":"🇪🇸 Spanish","🇵🇭 Filipino":"🇵🇭 Filipino","🇲🇦 العربية":"🇲🇦 العربية","🖐️ Hände":"🖐️ Hands","Rechte Hand":"Right hand","Linke Hand":"Left hand","Beide Hände":"Both hands","Für das Hauptlernen kann ich die Schwierigkeit Schritt für Schritt steigern.":"For main learning, I can increase the difficulty step by step.","🔔 Williams Benachrichtigungen":"🔔 William's notifications","🔔 Benachrichtigungen aktivieren":"🔔 Enable notifications","💌 William grüßen lassen":"💌 Let William say hello","Noch nicht aktiviert.":"Not activated yet.","🌿 Begrüßung beim Öffnen":"🌿 Greeting when opening","⏰ Nach 1 Stunde erinnern, wenn ich noch nicht angefangen habe":"⏰ Remind me after 1 hour if I have not started","🎹 Nach einer fertigen Übung loben":"🎹 Praise me after a completed exercise","🌙 Erinnerung während meiner Abwesenheit":"🌙 Reminder while I am away","Uhrzeit":"Time","🎼 NOTENSCHULE":"🎼 MUSIC READING SCHOOL","Lektion 1 · Das Notensystem":"Lesson 1 · The staff","Weiter →":"Next →","🧠 Dein Lernfortschritt":"🧠 Your learning progress","Lektion 1 von 6":"Lesson 1 of 6","HAUPTLERNEN":"MAIN LEARNING","Heute: Abschnitt":"Today: section","Takt 1–5":"Measures 1–5","Einleitung":"Introduction","Spiele langsam und achte auf beide Hände.":"Play slowly and pay attention to both hands.","📖 Nur dein aktueller Notenausschnitt":"📖 Only your current score section","Seite 1":"Page 1","6/8-Takt":"6/8 meter","🎹 Mehrstimmig":"🎹 Multiple voices","🎼 Takt auswählen":"🎼 Choose a measure","🕐 Takt-Uhr / Tempo":"🕐 Meter clock / tempo","🎼 Der Abschnitt wird im echten Takt gezählt · Zieltempo:":"🎼 The section is counted in its actual meter · target tempo:","6/8 · 6 Achtelzählzeiten":"6/8 · 6 eighth-note beats","40 BPM · sehr langsam":"40 BPM · very slow","50 BPM · Lernen":"50 BPM · learning","60 BPM · Aufbau":"60 BPM · building","66 BPM · fast am Ziel":"66 BPM · almost at target","72 BPM · 🎯 Original-/Zieltempo":"72 BPM · 🎯 original/target tempo","Nur der aktuelle kleine Abschnitt wird gezeigt. Wenn er sitzt, gehen wir weiter.":"Only the current small section is shown. Once it is secure, we move on.","⏱️ Lernzeit läuft mit":"⏱️ Practice time runs with the lesson","20 Minuten sind Teil dieser Übung – keine eigene Aufgabe.":"20 minutes are part of this lesson — not a separate task.","Nach 20 Minuten sind die Pflichtaufgaben des Tages erfüllt. Du kannst freiwillig weitermachen.":"After 20 minutes, today's required tasks are complete. You can continue voluntarily.","🎙️ Ich höre mit":"🎙️ I am listening","Mikrofon noch nicht gestartet":"Microphone not started","🎙️ Mikrofon starten":"🎙️ Start microphone","Nächster Schritt":"Next step","Die Webseite zeigt dir live den Ton, den dein Keyboard spielt.":"The app shows the note your keyboard plays in real time.","🧠 Danach auswendig":"🧠 Then from memory","🙈 Notenblatt ausblenden":"🙈 Hide the score","✓ Abschnitt sicher":"✓ Section secure","⚠️ Fehler – später nochmal":"⚠️ Mistake — repeat later","FREIMODUS":"FREE PLAY","Spiele einfach. Ich sage dir die Noten.":"Just play. I will tell you the notes.","🗑 Verlauf löschen":"🗑 Clear history","🎼 Erkannte Töne":"🎼 Detected notes","Hier siehst du die letzten Töne, die dein Keyboard gespielt hat.":"Here you can see the last notes played on your keyboard.","🎹 Tastatur":"🎹 Keyboard","🎄 Schritt für Schritt bis Weihnachten · Victor's Piano Solo":"🎄 Step by step to Christmas · Victor's Piano Solo","🎭 Auftrittsmodus starten":"🎭 Start performance mode","↩ Lernmodus":"↩ Learning mode","🎼 Referenz einspielen":"🎼 Record reference","🗑 Referenz löschen":"🗑 Delete reference","🎯 Letzter Ton":"🎯 Last note","Warte auf einen Ton…":"Waiting for a note…","🎹 Gleichzeitig":"🎹 Simultaneously","🎹 Keyboard verbinden":"🎹 Connect keyboard","🎹 Keyboard verbunden":"🎹 Keyboard connected"
  }
 };
-const fallbackEnglish={
-"🎹 Victor's Piano Solo":"🎹 Victor's Piano Solo",
-"Ich wähle dir eine kleine, sinnvolle Aufgabe aus, damit du das Stück Schritt für Schritt auswendig lernst.":"I choose a small, meaningful task so you can learn the piece step by step from memory.",
-"▶ Start":"▶ Start","⚙ Einstellungen":"⚙ Settings","🗺️ Dein Lernpfad":"🗺️ Your learning path","⭐ 0 XP":"⭐ 0 XP","0 / 20 XP heute":"0 / 20 XP today",
-"🎼 Erst Noten lernen":"🎼 Learn the notes first","🎼 Noten lesen lernen":"🎼 Learn to read music","0 von 6 Lektionen abgeschlossen":"0 of 6 lessons completed","🎄 Dein Fortschritt im Stück":"🎄 Your progress in the piece","0 von 14 Abschnitten sicher":"0 of 14 sections secure","Wir bauen das Stück langsam auf: kleine Abschnitte → beide Hände → auswendig.":"We build the piece gradually: small sections → both hands → from memory.",
-"📅 Dein Lernkalender":"📅 Your learning calendar","Tippe auf den Kalender oder „Lernplan öffnen“, um jede Woche bis zum 24.12. zu sehen.":"Tap the calendar or “Open learning plan” to see every week through 24 December.","📅 LERNPLAN":"📅 LEARNING PLAN","Woche 1":"Week 1",
-"Hier entscheidest du, was passiert, wenn du auf „Start“ drückst.":"Choose what happens when you press “Start”.","📚 Hauptlernen":"📚 Main learning","Ich gebe dir eine passende Tagesaufgabe vor. Genau das, was du heute üben solltest.":"I give you the right task for today — exactly what you should practise.","🔁 Üben":"🔁 Practice","Du wiederholst Übungen, die wir bereits gelernt haben.":"Repeat exercises you have already learned.","🎹 Frei":"🎹 Free play","Du spielst, was du möchtest. Die Webseite zeigt dir, welche Töne sie erkennt.":"Play whatever you want. The app shows you which notes it detects.",
-"🌐 Sprache":"🌐 Language","Wähle die Sprache der Oberfläche. Lerninhalte und Tagesplan werden mitübersetzt.":"Choose the interface language. Learning content and the daily plan are translated too.","🇩🇪 Deutsch":"🇩🇪 German","🇬🇧 English":"🇬🇧 English","🖐️ Hände":"🖐️ Hands","Für das Hauptlernen kann ich die Schwierigkeit Schritt für Schritt steigern.":"For main learning, I can increase the difficulty step by step.",
-"🔔 Williams Benachrichtigungen":"🔔 William's notifications","🔔 Benachrichtigungen aktivieren":"🔔 Enable notifications","💌 William grüßen lassen":"💌 Let William say hello","Noch nicht aktiviert.":"Not activated yet.","🌿 Begrüßung beim Öffnen":"🌿 Greeting when opening","⏰ Nach 1 Stunde erinnern, wenn ich noch nicht angefangen habe":"⏰ Remind me after 1 hour if I have not started","🎹 Nach einer fertigen Übung loben":"🎹 Praise me after a completed exercise","🌙 Erinnerung während meiner Abwesenheit":"🌙 Reminder while I am away","Uhrzeit":"Time",
-"🎼 NOTENSCHULE":"🎼 MUSIC READING SCHOOL","Lektion 1 · Das Notensystem":"Lesson 1 · The staff","🧠 Dein Lernfortschritt":"🧠 Your learning progress","Lektion 1 von 6":"Lesson 1 of 6",
-"HAUPTLERNEN":"MAIN LEARNING","Heute: Abschnitt":"Today: section","Takt 1–5":"Measures 1–5","📖 Nur dein aktueller Notenausschnitt":"📖 Only your current score section","Seite 1":"Page 1","6/8-Takt":"6/8 meter","🎼 Der Abschnitt wird im echten Takt gezählt · Zieltempo:":"🎼 The section is counted in its actual meter · target tempo:","72 BPM":"72 BPM","6/8 · 6 Achtelzählzeiten":"6/8 · 6 eighth-note beats","40 BPM · sehr langsam":"40 BPM · very slow","50 BPM · Lernen":"50 BPM · learning","60 BPM · Aufbau":"60 BPM · building","66 BPM · fast am Ziel":"66 BPM · almost at target","72 BPM · 🎯 Original-/Zieltempo":"72 BPM · 🎯 original/target tempo",
-"Nur der aktuelle kleine Abschnitt wird gezeigt. Wenn er sitzt, gehen wir weiter.":"Only the current small section is shown. Once it is secure, we move on.",
-"⏱️ Lernzeit läuft mit":"⏱️ Practice time runs with the lesson","20 Minuten sind Teil dieser Übung – keine eigene Aufgabe.":"20 minutes are part of this lesson — not a separate task.","Nach 20 Minuten sind die Pflichtaufgaben des Tages erfüllt. Du kannst freiwillig weitermachen.":"After 20 minutes, today's required tasks are complete. You can continue voluntarily.",
-"🎙️ Ich höre mit":"🎙️ I am listening","Mikrofon noch nicht gestartet":"Microphone not started","🎙️ Mikrofon starten":"🎙️ Start microphone","Nächster Schritt":"Next step","Die Webseite zeigt dir live den Ton, den dein Keyboard spielt.":"The app shows the note your keyboard plays in real time.",
-"🧠 Danach auswendig":"🧠 Then from memory","🙈 Notenblatt ausblenden":"🙈 Hide the score","✓ Abschnitt sicher":"✓ Section secure","⚠️ Fehler – später nochmal":"⚠️ Mistake — repeat later",
-"FREIMODUS":"FREE PLAY","Spiele einfach. Ich sage dir die Noten.":"Just play. I will tell you the notes.","🗑 Verlauf löschen":"🗑 Clear history","🎼 Erkannte Töne":"🎼 Detected notes","Hier siehst du die letzten Töne, die dein Keyboard gespielt hat.":"Here you can see the last notes played on your keyboard.","🎹 Tastatur":"🎹 Keyboard","🎄 Schritt für Schritt bis Weihnachten · Victor's Piano Solo":"🎄 Step by step to Christmas · Victor's Piano Solo"
+const multi={
+"Mein Weihnachtsprojekt":["My Christmas Project","Mi proyecto navideño","Ang Aking Proyektong Pasko","مشروعي لعيد الميلاد"],
+"Dein einfacher persönlicher Trainer für die Extended-Version.":["Your personal trainer for the Extended version.","Tu entrenador personal para la versión extendida.","Ang iyong personal na trainer para sa Extended version.","مدربك الشخصي للنسخة الممتدة."],
+"Hauptlernen":["Main learning","Aprendizaje principal","Pangunahing pag-aaral","التعلّم الأساسي"],
+"Deine heutige Übung":["Today's practice","Práctica de hoy","Pagsasanay ngayong araw","تمرين اليوم"],
+"Ich wähle dir eine kleine, sinnvolle Aufgabe aus, damit du das Stück Schritt für Schritt auswendig lernst.":["I choose a small, meaningful task so you can learn the piece step by step from memory.","Elijo una tarea pequeña y útil para que aprendas la pieza paso a paso de memoria.","Pipili ako ng maliit at kapaki-pakinabang na gawain para matutuhan mo ang piyesa nang paunti-unti sa memorya.","أختار لك مهمة صغيرة ومفيدة لتتعلم المقطوعة خطوة بخطوة عن ظهر قلب."],
+"▶ Start":["▶ Start","▶ Iniciar","▶ Simulan","▶ بدء"],
+"⚙ Einstellungen":["⚙ Settings","⚙ Ajustes","⚙ Mga setting","⚙ الإعدادات"],
+"🗺️ Dein Lernpfad":["🗺️ Your learning path","🗺️ Tu ruta de aprendizaje","🗺️ Iyong landas sa pag-aaral","🗺️ مسار تعلّمك"],
+"Wie bei Duolingo: eine kleine Aufgabe nach der anderen.":["Like Duolingo: one small task at a time.","Como en Duolingo: una pequeña tarea cada vez.","Parang Duolingo: isang maliit na gawain bawat hakbang.","مثل Duolingo: مهمة صغيرة في كل مرة."],
+"0 / 20 XP heute":["0 / 20 XP today","0 / 20 XP hoy","0 / 20 XP ngayong araw","0 / 20 XP اليوم"],
+"🎼 Erst Noten lernen":["🎼 Learn the notes first","🎼 Aprende primero las notas","🎼 Alamin muna ang mga nota","🎼 تعلّم النوتات أولاً"],
+"🎼 Noten lesen lernen":["🎼 Learn to read music","🎼 Aprende a leer música","🎼 Matutong bumasa ng musika","🎼 تعلّم قراءة النوتة"],
+"0 von 6 Lektionen abgeschlossen":["0 of 6 lessons completed","0 de 6 lecciones completadas","0 sa 6 na aralin ang natapos","0 من 6 دروس مكتملة"],
+"🎄 Dein Fortschritt im Stück":["🎄 Your progress in the piece","🎄 Tu progreso en la pieza","🎄 Ang progreso mo sa piyesa","🎄 تقدّمك في المقطوعة"],
+"0 von 14 Abschnitten sicher":["0 of 14 sections secure","0 de 14 secciones seguras","0 sa 14 na seksyon ang kabisado","0 من 14 مقطعاً متقناً"],
+"Wir bauen das Stück langsam auf: kleine Abschnitte → beide Hände → auswendig.":["We build the piece gradually: small sections → both hands → from memory.","Construimos la pieza poco a poco: secciones pequeñas → ambas manos → de memoria.","Unti-unti nating bubuuin ang piyesa: maliliit na seksyon → dalawang kamay → kabisado.","نبني المقطوعة تدريجياً: مقاطع صغيرة ← اليدان معاً ← عن ظهر قلب."],
+"📅 Dein Lernkalender":["📅 Your learning calendar","📅 Tu calendario de aprendizaje","📅 Iyong learning calendar","📅 تقويم تعلّمك"],
+"Von heute bis zum 24.12. siehst du deinen kompletten Weg.":["See your complete path from today to 24 December.","Ve todo tu camino desde hoy hasta el 24 de diciembre.","Makikita mo ang buong plano mula ngayon hanggang Disyembre 24.","شاهد مسارك الكامل من اليوم حتى 24 ديسمبر."],
+"📅 Lernplan öffnen":["📅 Open learning plan","📅 Abrir plan de aprendizaje","📅 Buksan ang learning plan","📅 فتح خطة التعلّم"],
+"📅 LERNPLAN":["📅 LEARNING PLAN","📅 PLAN DE APRENDIZAJE","📅 LEARNING PLAN","📅 خطة التعلّم"],
+"Dein Weg bis Weihnachten":["Your path to Christmas","Tu camino hasta Navidad","Ang landas mo hanggang Pasko","طريقك حتى عيد الميلاد"],
+"← Übersicht":["← Overview","← Resumen","← Pangkalahatang-ideya","← نظرة عامة"],
+"Woche 1":["Week 1","Semana 1","Linggo 1","الأسبوع 1"],
+"← Zurück":["← Back","← Atrás","← Bumalik","← رجوع"],
+"Hier entscheidest du, was passiert, wenn du auf „Start“ drückst.":["Choose what happens when you press “Start”.","Aquí decides qué ocurre cuando pulsas «Iniciar».","Dito mo pipiliin kung ano ang mangyayari kapag pinindot mo ang “Start”.","هنا تختار ما يحدث عند الضغط على «بدء»."],
+"📚 Hauptlernen":["📚 Main learning","📚 Aprendizaje principal","📚 Pangunahing pag-aaral","📚 التعلّم الأساسي"],
+"Ich gebe dir eine passende Tagesaufgabe vor. Genau das, was du heute üben solltest.":["I give you the right task for today — exactly what you should practise.","Te doy la tarea adecuada para hoy, exactamente lo que debes practicar.","Ibibigay ko ang tamang gawain para sa araw na ito—kung ano mismo ang dapat mong sanayin.","أعطيك مهمة اليوم المناسبة، أي ما ينبغي أن تتدرّب عليه بالضبط."],
+"🔁 Üben":["🔁 Practice","🔁 Practicar","🔁 Magsanay","🔁 تدريب"],
+"Du wiederholst Übungen, die wir bereits gelernt haben.":["Repeat exercises you have already learned.","Repites ejercicios que ya hemos aprendido.","Uulitin mo ang mga pagsasanay na natutuhan na natin.","تكرر التمارين التي تعلمناها بالفعل."],
+"🎹 Frei":["🎹 Free play","🎹 Tocar libremente","🎹 Malayang pagtugtog","🎹 عزف حر"],
+"Du spielst, was du möchtest. Die Webseite zeigt dir, welche Töne sie erkennt.":["Play whatever you want. The app shows which notes it detects.","Toca lo que quieras. La aplicación muestra las notas que reconoce.","Tumugtog ng kahit ano. Ipinapakita ng app ang mga notang nakikilala nito.","اعزف ما تشاء. يعرض التطبيق النوتات التي يتعرف عليها."],
+"🌐 Sprache":["🌐 Language","🌐 Idioma","🌐 Wika","🌐 اللغة"],
+"Wähle die Sprache der Oberfläche. Lerninhalte und Tagesplan werden mitübersetzt.":["Choose the interface language. Learning content and the daily plan are translated too.","Elige el idioma de la interfaz. El contenido y el plan diario también se traducen.","Piliin ang wika ng interface. Isasalin din ang aralin at daily plan.","اختر لغة الواجهة. ستتم ترجمة محتوى التعلّم والخطة اليومية أيضاً."],
+"🇩🇪 Deutsch":["🇩🇪 German","🇩🇪 Alemán","🇩🇪 Aleman","🇩🇪 الألمانية"],
+"🇬🇧 English":["🇬🇧 English","🇬🇧 Inglés","🇬🇧 Ingles","🇬🇧 الإنجليزية"],
+"🇪🇸 Español":["🇪🇸 Spanish","🇪🇸 Español","🇪🇸 Espanyol","🇪🇸 الإسبانية"],
+"🇵🇭 Filipino":["🇵🇭 Filipino","🇵🇭 Filipino","🇵🇭 Filipino","🇵🇭 الفلبينية"],
+"🇲🇦 العربية":["🇲🇦 Arabic","🇲🇦 Árabe","🇲🇦 Arabic","🇲🇦 العربية"],
+"🖐️ Hände":["🖐️ Hands","🖐️ Manos","🖐️ Mga kamay","🖐️ اليدان"],
+"Rechte Hand":["Right hand","Mano derecha","Kanang kamay","اليد اليمنى"],
+"Linke Hand":["Left hand","Mano izquierda","Kaliwang kamay","اليد اليسرى"],
+"Beide Hände":["Both hands","Ambas manos","Parehong kamay","كلتا اليدين"],
+"Für das Hauptlernen kann ich die Schwierigkeit Schritt für Schritt steigern.":["For main learning, I can increase the difficulty step by step.","Para el aprendizaje principal, puedo aumentar la dificultad paso a paso.","Para sa pangunahing pag-aaral, maaari kong dagdagan ang hirap nang paunti-unti.","في التعلّم الأساسي يمكنني زيادة الصعوبة خطوة بخطوة."],
+"🔔 Williams Benachrichtigungen":["🔔 William's notifications","🔔 Notificaciones de William","🔔 Mga notification ni William","🔔 إشعارات William"],
+"🔔 Benachrichtigungen aktivieren":["🔔 Enable notifications","🔔 Activar notificaciones","🔔 I-enable ang notifications","🔔 تفعيل الإشعارات"],
+"💌 William grüßen lassen":["💌 Let William say hello","💌 Dejar que William salude","💌 Hayaan si William na bumati","💌 دع William يحييك"],
+"Noch nicht aktiviert.":["Not activated yet.","Todavía no activado.","Hindi pa naka-enable.","لم يتم التفعيل بعد."],
+"🌿 Begrüßung beim Öffnen":["🌿 Greeting when opening","🌿 Saludo al abrir","🌿 Pagbati kapag binuksan","🌿 تحية عند الفتح"],
+"⏰ Nach 1 Stunde erinnern, wenn ich noch nicht angefangen habe":["⏰ Remind me after 1 hour if I have not started","⏰ Recordarme después de 1 hora si aún no he empezado","⏰ Paalalahanan ako pagkalipas ng 1 oras kung hindi pa ako nagsisimula","⏰ تذكيري بعد ساعة إذا لم أبدأ بعد"],
+"🎹 Nach einer fertigen Übung loben":["🎹 Praise me after a completed exercise","🎹 Felicitarme después de completar un ejercicio","🎹 Purihin ako pagkatapos ng isang natapos na ehersisyo","🎹 مدحي بعد إكمال تمرين"],
+"🌙 Erinnerung während meiner Abwesenheit":["🌙 Reminder while I am away","🌙 Recordatorio mientras estoy ausente","🌙 Paalala habang wala ako","🌙 تذكير أثناء غيابي"],
+"Uhrzeit":["Time","Hora","Oras","الوقت"],
+"🎼 NOTENSCHULE":["🎼 MUSIC READING SCHOOL","🎼 ESCUELA DE LECTURA MUSICAL","🎼 MUSIC READING SCHOOL","🎼 مدرسة قراءة النوتة"],
+"Lektion 1 · Das Notensystem":["Lesson 1 · The staff","Lección 1 · El pentagrama","Aralin 1 · Staff","الدرس 1 · المدرج الموسيقي"],
+"Weiter →":["Next →","Siguiente →","Susunod →","التالي →"],
+"🧠 Dein Lernfortschritt":["🧠 Your learning progress","🧠 Tu progreso de aprendizaje","🧠 Ang progreso mo sa pag-aaral","🧠 تقدّمك في التعلّم"],
+"Lektion 1 von 6":["Lesson 1 of 6","Lección 1 de 6","Aralin 1 sa 6","الدرس 1 من 6"],
+"HAUPTLERNEN":["MAIN LEARNING","APRENDIZAJE PRINCIPAL","PANGUNAHING PAG-AARAL","التعلّم الأساسي"],
+"Heute: Abschnitt":["Today: section","Hoy: sección","Ngayong araw: seksyon","اليوم: المقطع"],
+"Takt 1–5":["Measures 1–5","Compases 1–5","Mga measure 1–5","الموازير 1–5"],
+"Einleitung":["Introduction","Introducción","Panimula","مقدمة"],
+"Spiele langsam und achte auf beide Hände.":["Play slowly and pay attention to both hands.","Toca despacio y presta atención a ambas manos.","Tumugtog nang mabagal at bigyang-pansin ang dalawang kamay.","اعزف ببطء وانتبه إلى اليدين معاً."],
+"📖 Nur dein aktueller Notenausschnitt":["📖 Only your current score section","📖 Solo tu sección actual de partitura","📖 Kasalukuyang bahagi lang ng score","📖 مقطع النوتة الحالي فقط"],
+"Seite 1":["Page 1","Página 1","Pahina 1","الصفحة 1"],
+"6/8-Takt":["6/8 meter","Compás de 6/8","6/8 meter","ميزان 6/8"],
+"🎹 Mehrstimmig":["🎹 Multiple voices","🎹 Varias voces","🎹 Maraming boses","🎹 عدة أصوات"],
+"🎼 Takt auswählen":["🎼 Choose a measure","🎼 Elegir un compás","🎼 Pumili ng measure","🎼 اختر المازورة"],
+"🕐 Takt-Uhr / Tempo":["🕐 Meter clock / tempo","🕐 Reloj de compás / tempo","🕐 Meter clock / tempo","🕐 ساعة الميزان / السرعة"],
+"🎼 Der Abschnitt wird im echten Takt gezählt · Zieltempo:":["🎼 The section is counted in its actual meter · target tempo:","🎼 La sección se cuenta con su compás real · tempo objetivo:","🎼 Binibilang ang seksyon ayon sa tunay nitong meter · target tempo:","🎼 يُحسب المقطع وفق ميزانه الحقيقي · السرعة المستهدفة:"],
+"6/8 · 6 Achtelzählzeiten":["6/8 · 6 eighth-note beats","6/8 · 6 pulsos de corchea","6/8 · 6 eighth-note beats","6/8 · 6 نبضات من النوار الثامن"],
+"40 BPM · sehr langsam":["40 BPM · very slow","40 BPM · muy lento","40 BPM · napakabagal","40 BPM · بطيء جداً"],
+"50 BPM · Lernen":["50 BPM · learning","50 BPM · aprendizaje","50 BPM · pag-aaral","50 BPM · تعلّم"],
+"60 BPM · Aufbau":["60 BPM · building","60 BPM · desarrollo","60 BPM · pagbuo","60 BPM · بناء"],
+"66 BPM · fast am Ziel":["66 BPM · almost at target","66 BPM · casi al objetivo","66 BPM · malapit sa target","66 BPM · قريب من السرعة المستهدفة"],
+"72 BPM · 🎯 Original-/Zieltempo":["72 BPM · 🎯 original/target tempo","72 BPM · 🎯 tempo original/objetivo","72 BPM · 🎯 original/target tempo","72 BPM · 🎯 السرعة الأصلية/المستهدفة"],
+"Nur der aktuelle kleine Abschnitt wird gezeigt. Wenn er sitzt, gehen wir weiter.":["Only the current small section is shown. Once it is secure, we move on.","Solo se muestra la sección pequeña actual. Cuando esté segura, avanzamos.","Kasalukuyang maliit na seksyon lang ang ipinapakita. Kapag sigurado na, susulong tayo.","يظهر المقطع الصغير الحالي فقط. عندما تتقنه ننتقل إلى التالي."],
+"⏱️ Lernzeit läuft mit":["⏱️ Practice time runs with the lesson","⏱️ El tiempo de práctica corre con la lección","⏱️ Kasama sa lesson ang practice time","⏱️ وقت التدريب يعمل مع الدرس"],
+"20 Minuten sind Teil dieser Übung – keine eigene Aufgabe.":["20 minutes are part of this lesson — not a separate task.","20 minutos forman parte de esta práctica, no son una tarea aparte.","Kasama ang 20 minuto sa lesson na ito—hindi hiwalay na gawain.","20 دقيقة جزء من هذا التمرين وليست مهمة منفصلة."],
+"Nach 20 Minuten sind die Pflichtaufgaben des Tages erfüllt. Du kannst freiwillig weitermachen.":["After 20 minutes, today's required tasks are complete. You can continue voluntarily.","Después de 20 minutos se completan las tareas obligatorias de hoy. Puedes continuar si quieres.","Pagkalipas ng 20 minuto, tapos na ang required tasks ngayong araw. Maaari kang magpatuloy kung gusto mo.","بعد 20 دقيقة تكون مهام اليوم الإلزامية مكتملة. يمكنك المتابعة اختيارياً."],
+"🎙️ Ich höre mit":["🎙️ I am listening","🎙️ Estoy escuchando","🎙️ Nakikinig ako","🎙️ أستمع"],
+"Mikrofon noch nicht gestartet":["Microphone not started","Micrófono no iniciado","Hindi pa nagsisimula ang mikropono","لم يبدأ الميكروفون بعد"],
+"🎙️ Mikrofon starten":["🎙️ Start microphone","🎙️ Iniciar micrófono","🎙️ Simulan ang mikropono","🎙️ تشغيل الميكروفون"],
+"Nächster Schritt":["Next step","Siguiente paso","Susunod na hakbang","الخطوة التالية"],
+"Die Webseite zeigt dir live den Ton, den dein Keyboard spielt.":["The app shows the note your keyboard plays in real time.","La aplicación muestra en tiempo real la nota que toca tu teclado.","Ipinapakita ng app nang live ang notang tinutugtog ng keyboard mo.","يعرض التطبيق النوتة التي يعزفها الكيبورد مباشرة."],
+"🧠 Danach auswendig":["🧠 Then from memory","🧠 Después de memoria","🧠 Pagkatapos ay kabisado","🧠 ثم من الذاكرة"],
+"🙈 Notenblatt ausblenden":["🙈 Hide the score","🙈 Ocultar la partitura","🙈 Itago ang score","🙈 إخفاء النوتة"],
+"✓ Abschnitt sicher":["✓ Section secure","✓ Sección segura","✓ Kabisado ang seksyon","✓ المقطع متقن"],
+"⚠️ Fehler – später nochmal":["⚠️ Mistake — repeat later","⚠️ Error — repetir después","⚠️ Mali — ulitin mamaya","⚠️ خطأ — أعده لاحقاً"],
+"FREIMODUS":["FREE PLAY","MODO LIBRE","MALAYANG MODE","العزف الحر"],
+"Spiele einfach. Ich sage dir die Noten.":["Just play. I will tell you the notes.","Toca. Yo te diré las notas.","Tumugtog lang. Sasabihin ko ang mga nota.","اعزف فقط. سأخبرك بالنوتات."],
+"🗑 Verlauf löschen":["🗑 Clear history","🗑 Borrar historial","🗑 I-clear ang history","🗑 مسح السجل"],
+"🎼 Erkannte Töne":["🎼 Detected notes","🎼 Notas detectadas","🎼 Mga nakilalang nota","🎼 النوتات المكتشفة"],
+"Hier siehst du die letzten Töne, die dein Keyboard gespielt hat.":["Here you can see the last notes played on your keyboard.","Aquí ves las últimas notas que ha tocado tu teclado.","Dito makikita ang mga huling notang tinugtog ng keyboard mo.","هنا ترى آخر النوتات التي عزفها الكيبورد."],
+"🎹 Tastatur":["🎹 Keyboard","🎹 Teclado","🎹 Keyboard","🎹 لوحة المفاتيح"],
+"🎄 Schritt für Schritt bis Weihnachten · Victor's Piano Solo":["🎄 Step by step to Christmas · Victor's Piano Solo","🎄 Paso a paso hasta Navidad · Victor's Piano Solo","🎄 Hakbang-hakbang hanggang Pasko · Victor's Piano Solo","🎄 خطوة بخطوة حتى عيد الميلاد · Victor's Piano Solo"],
+"🎭 Auftrittsmodus starten":["🎭 Start performance mode","🎭 Iniciar modo de actuación","🎭 Simulan ang performance mode","🎭 بدء وضع الأداء"],
+"↩ Lernmodus":["↩ Learning mode","↩ Modo de aprendizaje","↩ Learning mode","↩ وضع التعلّم"],
+"🎼 Referenz einspielen":["🎼 Record reference","🎼 Grabar referencia","🎼 I-record ang reference","🎼 تسجيل المرجع"],
+"🗑 Referenz löschen":["🗑 Delete reference","🗑 Borrar referencia","🗑 Burahin ang reference","🗑 حذف المرجع"],
+"🎯 Letzter Ton":["🎯 Last note","🎯 Última nota","🎯 Huling nota","🎯 آخر نوتة"],
+"Warte auf einen Ton…":["Waiting for a note…","Esperando una nota…","Naghihintay ng nota…","في انتظار نوتة…"],
+"🎹 Gleichzeitig":["🎹 Simultaneously","🎹 Simultáneamente","🎹 Sabay-sabay","🎹 في الوقت نفسه"],
+"🎹 Keyboard verbinden":["🎹 Connect keyboard","🎹 Conectar teclado","🎹 Ikonekta ang keyboard","🎹 توصيل الكيبورد"],
+"🎹 Keyboard verbunden":["🎹 Keyboard connected","🎹 Teclado conectado","🎹 Nakakonekta ang keyboard","🎹 تم توصيل الكيبورد"],
+"Einleitung":["Introduction","Introducción","Panimula","مقدمة"],"Melodie & Begleitung":["Melody & accompaniment","Melodía y acompañamiento","Melodiya at accompaniment","اللحن والمصاحبة"],"Aufbau":["Development","Desarrollo","Pagbuo","تطوّر"],"Übergang":["Transition","Transición","Paglipat","انتقال"],"Steigerung":["Build-up","Aumento","Pagtaas","تصاعد"],"Neuer Abschnitt":["New section","Nueva sección","Bagong seksyon","مقطع جديد"],"Ritardando":["Ritardando","Ritardando","Ritardando","Ritardando"],"A tempo":["A tempo","A tempo","A tempo","A tempo"],"Crescendo":["Crescendo","Crescendo","Crescendo","Crescendo"],"Weiterführung":["Continuation","Continuación","Pagpapatuloy","استمرار"],"Neuer Taktteil":["New meter section","Nueva sección de compás","Bagong bahagi ng meter","جزء جديد من الميزان"],"Ruhiger Teil":["Quieter section","Sección tranquila","Mas tahimik na bahagi","مقطع هادئ"],"Schluss":["Ending","Final","Wakas","النهاية"],
+"rechte Hand":["right hand","mano derecha","kanang kamay","اليد اليمنى"],"linke Hand":["left hand","mano izquierda","kaliwang kamay","اليد اليسرى"],"beide Hände":["both hands","ambas manos","parehong kamay","كلتا اليدين"],"auswendig":["from memory","de memoria","kabisado","عن ظهر قلب"],
+"Piano-freier Start · Noten & Rhythmus":["Piano-free start · notes & rhythm","Inicio sin piano · notas y ritmo","Simula nang walang piano · nota at ritmo","بداية بدون بيانو · النوتات والإيقاع"],"Piano-Start":["Piano start","Inicio con piano","Simula sa piano","بدء البيانو"],"Zusammensetzen":["Putting hands together","Unir las manos","Pagsasama ng dalawang kamay","جمع اليدين معاً"],"Auswendig":["From memory","De memoria","Kabisado","من الذاكرة"],"Festigen":["Consolidation","Consolidación","Pagpapatibay","ترسيخ"],
+"Neue Noten langsam und sauber lernen":["Learn the new notes slowly and cleanly","Aprender las notas nuevas despacio y con precisión","Alamin ang bagong nota nang mabagal at malinis","تعلّم النوتات الجديدة ببطء ودقة"],
+"Begleitung kennenlernen, Rhythmus sichern und wiederholen":["Learn the accompaniment, secure the rhythm and repeat","Aprender el acompañamiento, asegurar el ritmo y repetir","Alamin ang accompaniment, panatilihin ang ritmo at ulitin","تعلّم المصاحبة وثبّت الإيقاع ثم كرر"],
+"Beide Hände langsam verbinden, Rhythmus halten und danach auswendig versuchen":["Put both hands together slowly, keep the rhythm, then try from memory","Une ambas manos despacio, mantén el ritmo y después inténtalo de memoria","Pagsamahin nang mabagal ang dalawang kamay, panatilihin ang ritmo, pagkatapos ay subukang kabisado","اجمع اليدين ببطء وحافظ على الإيقاع ثم جرّب من الذاكرة"],
+"Noten weg: Abschnitt aus dem Gedächtnis spielen und schwierige Stellen gezielt wiederholen":["Put the notes away: play the section from memory and repeat difficult spots deliberately","Aparta la partitura: toca la sección de memoria y repite las partes difíciles","Itabi ang notes: tugtugin ang seksyon mula sa memorya at ulitin ang mahihirap na bahagi","أبعد النوتة: اعزف المقطع من الذاكرة وكرر المواضع الصعبة"],
+"Gesamtstück + Übergänge":["Full piece + transitions","Pieza completa + transiciones","Buong piyesa + transitions","المقطوعة كاملة + الانتقالات"],"Gesamtstück + schwierige Stellen":["Full piece + difficult spots","Pieza completa + partes difíciles","Buong piyesa + mahihirap na bahagi","المقطوعة كاملة + المواضع الصعبة"],"Generalprobe":["Full run-through","Ensayo general","Buong performance rehearsal","بروفة كاملة"],
+"Komplett von Anfang bis Ende spielen, auswendig festigen, Übergänge üben und Fehlerstellen wiederholen":["Play the whole piece from start to finish, consolidate it from memory, practise transitions and repeat difficult spots","Toca toda la pieza de principio a fin, consolídala de memoria, practica las transiciones y repite los errores","Tugtugin ang buong piyesa mula simula hanggang dulo, patibayin ang memorya, sanayin ang transitions at ulitin ang mahihirap na bahagi","اعزف المقطوعة كاملة من البداية إلى النهاية، وثبّتها من الذاكرة، وتدرّب على الانتقالات وكرر المواضع الصعبة"]
 };
+for(const [k,v] of Object.entries(multi)){translations.en[k]=v[0]}
+const langCodes={en:0,es:1,fil:2,ar:3};
+function buildDict(lang){
+ const d=Object.assign({},translations.en);
+ for(const [k,v] of Object.entries(multi)) d[k]=v[langCodes[lang]??0];
+ return d;
+}
 function setLanguage(lang){
- localStorage.setItem('victorLang',lang);document.documentElement.lang=lang;
- if(lang!=='en')return;
- const dict=Object.assign({},translations.en,fallbackEnglish);document.querySelectorAll('h1,h2,h3,h4,p,span,button,strong,label,.badge,.logo,.subtitle,.muted,.calendar-note,.taktbox').forEach(el=>{
-   if(el.children.length===0){const t=el.textContent.trim();if(dict[t])el.textContent=dict[t];}
- });
- $('langDe')?.classList.remove('primary');$('langEn')?.classList.add('primary');
- try{translateDynamic()}catch(e){}
+ localStorage.setItem('victorLang',lang);
+ document.documentElement.lang=lang==='fil'?'fil':lang;
+ document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+ translateDynamic();
+ document.querySelectorAll('[id^="lang"]').forEach(b=>b.classList.remove('primary'));
+ $('lang'+({de:'De',en:'En',es:'Es',fil:'Fil',ar:'Ar'}[lang]||'De'))?.classList.add('primary');
 }
-$('langDe')?.addEventListener('click',()=>{localStorage.setItem('victorLang','de');location.reload()});
-$('langEn')?.addEventListener('click',()=>setLanguage('en'));
-if(localStorage.getItem('victorLang')==='en')setTimeout(()=>setLanguage('en'),0);
-
-// Translate newly rendered dynamic content as well.
-const dynamicEnglish={
- 'Einleitung':'Introduction','Melodie & Begleitung':'Melody & accompaniment','Aufbau':'Development','Übergang':'Transition','Steigerung':'Build-up','Neuer Abschnitt':'New section','Ritardando':'Ritardando','A tempo':'A tempo','Crescendo':'Crescendo','Weiterführung':'Continuation','Neuer Taktteil':'New meter section','Ruhiger Teil':'Quieter section','Schluss':'Ending','rechte Hand':'right hand','linke Hand':'left hand','beide Hände':'both hands','auswendig':'from memory','Piano-freier Start · Noten & Rhythmus':'Piano-free start · notes & rhythm','Piano-Start':'Piano start','Zusammensetzen':'Putting hands together','Auswendig':'From memory','Festigen':'Consolidation','Heute ist dein Klavier noch nicht da. Lies die ersten Noten und kläre den Rhythmus ohne Instrument – kein verpasster Klaviertag.':'Your piano is not available yet. Read the first notes and work on the rhythm without the instrument — this is not a missed piano day.','Begleitung kennenlernen und den Puls stabil halten. Danach kurz ohne Noten versuchen.':'Learn the accompaniment and keep the pulse steady. Then try it briefly without the notes.','Rechte und linke Hand verbinden. Langsam spielen und jeden Übergang sauber halten.':'Put right and left hands together. Play slowly and keep every transition clean.','Noten weg, Takt-Uhr bleibt. Bei einem Fehler wird der Abschnitt automatisch zur Wiederholung vorgemerkt.':'Notes away, meter clock stays. If you make a mistake, the section is automatically marked for review.','Kurze Notenschule als Ergänzung – danach weiter mit dem Stück.':'A short music-reading lesson as a supplement — then continue with the piece.','Neue Noten langsam und sauber lernen':'Learn the new notes slowly and cleanly','Begleitung kennenlernen, Rhythmus sichern und wiederholen':'Learn the accompaniment, secure the rhythm and repeat','Beide Hände langsam verbinden, Rhythmus halten und danach auswendig versuchen':'Put both hands together slowly, keep the rhythm, then try from memory','Noten weg: Abschnitt aus dem Gedächtnis spielen und schwierige Stellen gezielt wiederholen':'Put the notes away: play the section from memory and repeat difficult spots deliberately','Gesamtstück + Übergänge':'Full piece + transitions','Gesamtstück + schwierige Stellen':'Full piece + difficult spots','Generalprobe':'Full run-through','Komplett von Anfang bis Ende spielen, auswendig festigen, Übergänge üben und Fehlerstellen wiederholen':'Play the whole piece from start to finish, consolidate it from memory, practise transitions and repeat difficult spots','rechte Hand':'right hand','linke Hand':'left hand'
-};
 function translateDynamic(){
- if(localStorage.getItem('victorLang')!=='en') return;
- const dict=Object.assign({},translations.en,fallbackEnglish,dynamicEnglish);
+ const lang=localStorage.getItem('victorLang')||'de';
+ if(lang==='de') return;
+ const dict=buildDict(lang);
  [...document.querySelectorAll('body *')].forEach(el=>{
-   if(el.children.length===0){
-     const t=el.textContent.trim();
-     if(dict[t])el.textContent=dict[t];
-     else for(const [de,en] of Object.entries(dict)){if(t.startsWith(de+' · ')){el.textContent=en+t.slice(de.length);break}}
-   }
-   for(const a of ['title','aria-label']){const v=el.getAttribute(a);if(v&&dict[v])el.setAttribute(a,dict[v])}
+  if(el.children.length===0){
+   const t=el.textContent.trim();
+   if(dict[t]) el.textContent=dict[t];
+   else for(const [de,val] of Object.entries(dict)){if(t.startsWith(de+' · ')){el.textContent=val+t.slice(de.length);break}}
+  }
+  for(const a of ['title','aria-label','placeholder']){
+   const v=el.getAttribute(a);
+   if(v&&dict[v]) el.setAttribute(a,dict[v]);
+  }
  });
 }
-const _renderPlanWeek=renderPlanWeek; renderPlanWeek=function(){_renderPlanWeek();translateDynamic()};
-const _renderSchool=renderSchool; renderSchool=function(){_renderSchool();translateDynamic()};
-const _renderLearnPath=renderLearnPath; renderLearnPath=function(){_renderLearnPath();translateDynamic()};
-const _updateHome=updateHome; updateHome=function(){_updateHome();translateDynamic()};
-</script>
+const _renderPlanWeek=renderPlanWeek;renderPlanWeek=function(){_renderPlanWeek();translateDynamic()};
+const _renderSchool=renderSchool;renderSchool=function(){_renderSchool();translateDynamic()};
+const _renderLearnPath=renderLearnPath;renderLearnPath=function(){_renderLearnPath();translateDynamic()};
+const _updateHome=updateHome;updateHome=function(){_updateHome();translateDynamic()};
+window.addEventListener('load',()=>setTimeout(translateDynamic,0));
 <style id="victorFinalFixes">
 .performance-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.performance-bar button{flex:1;min-width:150px}
 .performance-active .card:not(.performance-main),.performance-active header,.performance-active footer{display:none!important}
