@@ -1004,7 +1004,7 @@ const _updateHome=updateHome; updateHome=function(){_updateHome();translateDynam
 <style id="victorFinalFixes">
 .performance-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.performance-bar button{flex:1;min-width:150px}
 .performance-active .card:not(.performance-main),.performance-active header,.performance-active footer{display:none!important}
-.performance-active main{max-width:1000px}.performance-active #lessonPage{display:block!important}
+.performance-active main{max-width:1000px}.performance-active #lesson{display:block!important}
 .performance-active #sessionTimerCard{display:none}.performance-active .score-crop{height:310px!important}
 .detect-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.detect-chip{padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.16)}
 .reference-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.reference-bar button{flex:1;min-width:180px}.reference-status{margin-top:8px;font-size:.86rem;color:var(--muted)}
@@ -1018,12 +1018,12 @@ const _updateHome=updateHome; updateHome=function(){_updateHome();translateDynam
  function loadReference(){V.referenceKey=currentKey();try{V.reference=JSON.parse(localStorage.getItem(V.referenceKey)||'[]')}catch(e){V.reference=[]}}
  function saveReference(){if(V.reference.length)localStorage.setItem(V.referenceKey,JSON.stringify(V.reference))}
  function addLessonUI(){
-  const actions=document.querySelector('#lessonPage .card .actions');
+  const actions=document.querySelector('#lesson .card .actions');
   if(actions&&!$('lessonMidi')){const m=document.createElement('button');m.id='lessonMidi';m.textContent='🎹 Keyboard verbinden';actions.appendChild(m);m.onclick=()=>V.connectMIDI()}
-  const card=document.querySelector('#lessonPage .card:last-of-type');
+  const card=document.querySelector('#lesson .card:last-of-type');
   if(card&&!$('performanceBar')){const bar=document.createElement('div');bar.id='performanceBar';bar.className='performance-bar';bar.innerHTML='<button id="performanceStart">🎭 Auftrittsmodus starten</button><button id="performanceStop" style="display:none">↩ Lernmodus</button>';card.appendChild(bar);$('performanceStart').onclick=()=>V.startPerformance();$('performanceStop').onclick=()=>V.stopPerformance()}
   if(card&&!$('referenceBar')){const bar=document.createElement('div');bar.id='referenceBar';bar.className='reference-bar';bar.innerHTML='<button id="referenceStart">🎼 Referenz einspielen</button><button id="referenceClear">🗑 Referenz löschen</button><div id="referenceStatus" class="reference-status"></div>';card.appendChild(bar);$('referenceStart').onclick=()=>V.toggleReference();$('referenceClear').onclick=()=>{V.reference=[];localStorage.removeItem(currentKey());V.updateReferenceStatus()}}
-  const h=document.querySelector('#lessonPage .card h2');if(h&&h.textContent.includes('Ich höre mit')&&!$('detectGrid')){const g=document.createElement('div');g.id='detectGrid';g.className='detect-grid';g.innerHTML='<div class="detect-chip"><strong>🎯 Letzter Ton</strong><div id="lastCorrectness">Warte auf einen Ton…</div></div><div class="detect-chip"><strong>🎹 Gleichzeitig</strong><div id="detectedChord">—</div></div>';h.parentElement.appendChild(g)}
+  const h=document.querySelector('#lesson .card h2');if(h&&h.textContent.includes('Ich höre mit')&&!$('detectGrid')){const g=document.createElement('div');g.id='detectGrid';g.className='detect-grid';g.innerHTML='<div class="detect-chip"><strong>🎯 Letzter Ton</strong><div id="lastCorrectness">Warte auf einen Ton…</div></div><div class="detect-chip"><strong>🎹 Gleichzeitig</strong><div id="detectedChord">—</div></div>';h.parentElement.appendChild(g)}
   loadReference();V.updateReferenceStatus();
  }
  V.updateReferenceStatus=function(){const e=$('referenceStatus');if(!e)return;e.textContent=V.recording?'🔴 Referenzaufnahme läuft – spiele den Abschnitt vollständig mit Noten.':V.reference.length?'🟢 Referenz gespeichert: '+V.reference.length+' Töne für '+state.hand+'.':'⚪ Für genaue Fehler-/Auslassungsprüfung zuerst „Referenz einspielen“ verwenden.'}
