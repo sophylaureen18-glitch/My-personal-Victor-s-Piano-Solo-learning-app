@@ -497,8 +497,7 @@ function completePathNode(id,xp){
    const today=localKey(new Date());if(localStorage.getItem('victorXpDate')!==today){localStorage.setItem('victorXpDate',today);localStorage.setItem('victorXpToday','0')}
    const v=Number(localStorage.getItem('victorXpToday')||0)+xp;localStorage.setItem('victorXpToday',String(v));recordPracticeDay();
  }
- setWallpaper('home');renderLearnPath();
-}
+ setWallpaper('home');renderLearnPath();}
 function startPathNode(i){
  clearInterval(timerId);timerId=null;sessionTimerStarted=false;timerSeconds=1200;
  const n=learnPath[i];
@@ -997,4 +996,356 @@ const multi={
 "Ich gebe dir eine passende Tagesaufgabe vor. Genau das, was du heute üben solltest.":["I give you the right task for today — exactly what you should practise.","Te doy la tarea adecuada para hoy, exactamente lo que debes practicar.","Ibibigay ko ang tamang gawain para sa araw na ito—kung ano mismo ang dapat mong sanayin.","أعطيك مهمة اليوم المناسبة، أي ما ينبغي أن تتدرّب عليه بالضبط."],
 "🔁 Üben":["🔁 Practice","🔁 Practicar","🔁 Magsanay","🔁 تدريب"],
 "Du wiederholst Übungen, die wir bereits gelernt haben.":["Repeat exercises you have already learned.","Repites ejercicios que ya hemos aprendido.","Uulitin mo ang mga pagsasanay na natutuhan na natin.","تكرر التمارين التي تعلمناها بالفعل."],
-"🎹 Frei":["🎹 Free play","🎹 Tocar libremente","🎹 Malayang pagtugtog","🎹 عزف حر"],
+"🎹 Frei":["🎹 Free play","🎹 Tocar libremente","🎹 Malayang pagtugtog","🎹 عزف حر"],"Du spielst, was du möchtest. Die Webseite zeigt dir, welche Töne sie erkennt.":["Play whatever you want. The app shows which notes it detects.","Toca lo que quieras. La aplicación muestra las notas que reconoce.","Tumugtog ng kahit ano. Ipinapakita ng app ang mga notang nakikilala nito.","اعزف ما تشاء. يعرض التطبيق النوتات التي يتعرف عليها."],
+"🌐 Sprache":["🌐 Language","🌐 Idioma","🌐 Wika","🌐 اللغة"],
+"Wähle die Sprache der Oberfläche. Lerninhalte und Tagesplan werden mitübersetzt.":["Choose the interface language. Learning content and the daily plan are translated too.","Elige el idioma de la interfaz. El contenido y el plan diario también se traducen.","Piliin ang wika ng interface. Isasalin din ang aralin at daily plan.","اختر لغة الواجهة. ستتم ترجمة محتوى التعلّم والخطة اليومية أيضاً."],
+"🇩🇪 Deutsch":["🇩🇪 German","🇩🇪 Alemán","🇩🇪 Aleman","🇩🇪 الألمانية"],
+"🇬🇧 English":["🇬🇧 English","🇬🇧 Inglés","🇬🇧 Ingles","🇬🇧 الإنجليزية"],
+"🇪🇸 Español":["🇪🇸 Spanish","🇪🇸 Español","🇪🇸 Espanyol","🇪🇸 الإسبانية"],
+"🇵🇭 Filipino":["🇵🇭 Filipino","🇵🇭 Filipino","🇵🇭 Filipino","🇵🇭 الفلبينية"],
+"🇲🇦 العربية":["🇲🇦 Arabic","🇲🇦 Árabe","🇲🇦 Arabic","🇲🇦 العربية"],
+"🖐️ Hände":["🖐️ Hands","🖐️ Manos","🖐️ Mga kamay","🖐️ اليدان"],
+"Rechte Hand":["Right hand","Mano derecha","Kanang kamay","اليد اليمنى"],
+"Linke Hand":["Left hand","Mano izquierda","Kaliwang kamay","اليد اليسرى"],
+"Beide Hände":["Both hands","Ambas manos","Parehong kamay","كلتا اليدين"],
+"Für das Hauptlernen kann ich die Schwierigkeit Schritt für Schritt steigern.":["For main learning, I can increase the difficulty step by step.","Para el aprendizaje principal, puedo aumentar la dificultad paso a paso.","Para sa pangunahing pag-aaral, maaari kong dagdagan ang hirap nang paunti-unti.","في التعلّم الأساسي يمكنني زيادة الصعوبة خطوة بخطوة."],
+"🔔 Williams Benachrichtigungen":["🔔 William's notifications","🔔 Notificaciones de William","🔔 Mga notification ni William","🔔 إشعارات William"],
+"🔔 Benachrichtigungen aktivieren":["🔔 Enable notifications","🔔 Activar notificaciones","🔔 I-enable ang notifications","🔔 تفعيل الإشعارات"],
+"💌 William grüßen lassen":["💌 Let William say hello","💌 Dejar que William salude","💌 Hayaan si William na bumati","💌 دع William يحييك"],
+"Noch nicht aktiviert.":["Not activated yet.","Todavía no activado.","Hindi pa naka-enable.","لم يتم التفعيل بعد."],
+"🌿 Begrüßung beim Öffnen":["🌿 Greeting when opening","🌿 Saludo al abrir","🌿 Pagbati kapag binuksan","🌿 تحية عند الفتح"],
+"⏰ Nach 1 Stunde erinnern, wenn ich noch nicht angefangen habe":["⏰ Remind me after 1 hour if I have not started","⏰ Recordarme después de 1 hora si aún no he empezado","⏰ Paalalahanan ako pagkalipas ng 1 oras kung hindi pa ako nagsisimula","⏰ تذكيري بعد ساعة إذا لم أبدأ بعد"],
+"🎹 Nach einer fertigen Übung loben":["🎹 Praise me after a completed exercise","🎹 Felicitarme después de completar un ejercicio","🎹 Purihin ako pagkatapos ng isang natapos na ehersisyo","🎹 مدحي بعد إكمال تمرين"],
+"🌙 Erinnerung während meiner Abwesenheit":["🌙 Reminder while I am away","🌙 Recordatorio mientras estoy ausente","🌙 Paalala habang wala ako","🌙 تذكير أثناء غيابي"],
+"Uhrzeit":["Time","Hora","Oras","الوقت"],
+"🎼 NOTENSCHULE":["🎼 MUSIC READING SCHOOL","🎼 ESCUELA DE LECTURA MUSICAL","🎼 MUSIC READING SCHOOL","🎼 مدرسة قراءة النوتة"],
+"Lektion 1 · Das Notensystem":["Lesson 1 · The staff","Lección 1 · El pentagrama","Aralin 1 · Staff","الدرس 1 · المدرج الموسيقي"],
+"Weiter →":["Next →","Siguiente →","Susunod →","التالي →"],
+"🧠 Dein Lernfortschritt":["🧠 Your learning progress","🧠 Tu progreso de aprendizaje","🧠 Ang progreso mo sa pag-aaral","🧠 تقدّمك في التعلّم"],
+"Lektion 1 von 6":["Lesson 1 of 6","Lección 1 de 6","Aralin 1 sa 6","الدرس 1 من 6"],
+"HAUPTLERNEN":["MAIN LEARNING","APRENDIZAJE PRINCIPAL","PANGUNAHING PAG-AARAL","التعلّم الأساسي"],
+"Heute: Abschnitt":["Today: section","Hoy: sección","Ngayong araw: seksyon","اليوم: المقطع"],
+"Takt 1–5":["Measures 1–5","Compases 1–5","Mga measure 1–5","الموازير 1–5"],
+"Einleitung":["Introduction","Introducción","Panimula","مقدمة"],
+"Spiele langsam und achte auf beide Hände.":["Play slowly and pay attention to both hands.","Toca despacio y presta atención a ambas manos.","Tumugtog nang mabagal at bigyang-pansin ang dalawang kamay.","اعزف ببطء وانتبه إلى اليدين معاً."],
+"📖 Nur dein aktueller Notenausschnitt":["📖 Only your current score section","📖 Solo tu sección actual de partitura","📖 Kasalukuyang bahagi lang ng score","📖 مقطع النوتة الحالي فقط"],
+"Seite 1":["Page 1","Página 1","Pahina 1","الصفحة 1"],
+"6/8-Takt":["6/8 meter","Compás de 6/8","6/8 meter","ميزان 6/8"],
+"🎹 Mehrstimmig":["🎹 Multiple voices","🎹 Varias voces","🎹 Maraming boses","🎹 عدة أصوات"],
+"🎼 Takt auswählen":["🎼 Choose a measure","🎼 Elegir un compás","🎼 Pumili ng measure","🎼 اختر المازورة"],
+"🕐 Takt-Uhr / Tempo":["🕐 Meter clock / tempo","🕐 Reloj de compás / tempo","🕐 Meter clock / tempo","🕐 ساعة الميزان / السرعة"],
+"🎼 Der Abschnitt wird im echten Takt gezählt · Zieltempo:":["🎼 The section is counted in its actual meter · target tempo:","🎼 La sección se cuenta con su compás real · tempo objetivo:","🎼 Binibilang ang seksyon ayon sa tunay nitong meter · target tempo:","🎼 يُحسب المقطع وفق ميزانه الحقيقي · السرعة المستهدفة:"],
+"6/8 · 6 Achtelzählzeiten":["6/8 · 6 eighth-note beats","6/8 · 6 pulsos de corchea","6/8 · 6 eighth-note beats","6/8 · 6 نبضات من النوار الثامن"],
+"40 BPM · sehr langsam":["40 BPM · very slow","40 BPM · muy lento","40 BPM · napakabagal","40 BPM · بطيء جداً"],
+"50 BPM · Lernen":["50 BPM · learning","50 BPM · aprendizaje","50 BPM · pag-aaral","50 BPM · تعلّم"],
+"60 BPM · Aufbau":["60 BPM · building","60 BPM · desarrollo","60 BPM · pagbuo","60 BPM · بناء"],
+"66 BPM · fast am Ziel":["66 BPM · almost at target","66 BPM · casi al objetivo","66 BPM · malapit sa target","66 BPM · قريب من السرعة المستهدفة"],
+"72 BPM · 🎯 Original-/Zieltempo":["72 BPM · 🎯 original/target tempo","72 BPM · 🎯 tempo original/objetivo","72 BPM · 🎯 original/target tempo","72 BPM · 🎯 السرعة الأصلية/المستهدفة"],
+"Nur der aktuelle kleine Abschnitt wird gezeigt. Wenn er sitzt, gehen wir weiter.":["Only the current small section is shown. Once it is secure, we move on.","Solo se muestra la sección pequeña actual. Cuando esté segura, avanzamos.","Kasalukuyang maliit na seksyon lang ang ipinapakita. Kapag sigurado na, susulong tayo.","يظهر المقطع الصغير الحالي فقط. عندما تتقنه ننتقل إلى التالي."],
+"⏱️ Lernzeit läuft mit":["⏱️ Practice time runs with the lesson","⏱️ El tiempo de práctica corre con la lección","⏱️ Kasama sa lesson ang practice time","⏱️ وقت التدريب يعمل مع الدرس"],
+"20 Minuten sind Teil dieser Übung – keine eigene Aufgabe.":["20 minutes are part of this lesson — not a separate task.","20 minutos forman parte de esta práctica, no son una tarea aparte.","Kasama ang 20 minuto sa lesson na ito—hindi hiwalay na gawain.","20 دقيقة جزء من هذا التمرين وليست مهمة منفصلة."],
+"Nach 20 Minuten sind die Pflichtaufgaben des Tages erfüllt. Du kannst freiwillig weitermachen.":["After 20 minutes, today's required tasks are complete. You can continue voluntarily.","Después de 20 minutos se completan las tareas obligatorias de hoy. Puedes continuar si quieres.","Pagkalipas ng 20 minuto, tapos na ang required tasks ngayong araw. Maaari kang magpatuloy kung gusto mo.","بعد 20 دقيقة تكون مهام اليوم الإلزامية مكتملة. يمكنك المتابعة اختيارياً."],
+"🎙️ Ich höre mit":["🎙️ I am listening","🎙️ Estoy escuchando","🎙️ Nakikinig ako","🎙️ أستمع"],
+"Mikrofon noch nicht gestartet":["Microphone not started","Micrófono no iniciado","Hindi pa nagsisimula ang mikropono","لم يبدأ الميكروفون بعد"],
+"🎙️ Mikrofon starten":["🎙️ Start microphone","🎙️ Iniciar micrófono","🎙️ Simulan ang mikropono","🎙️ تشغيل الميكروفون"],
+"Nächster Schritt":["Next step","Siguiente paso","Susunod na hakbang","الخطوة التالية"],
+"Die Webseite zeigt dir live den Ton, den dein Keyboard spielt.":["The app shows the note your keyboard plays in real time.","La aplicación muestra en tiempo real la nota que toca tu teclado.","Ipinapakita ng app nang live ang notang tinutugtog ng keyboard mo.","يعرض التطبيق النوتة التي يعزفها الكيبورد مباشرة."],
+"🧠 Danach auswendig":["🧠 Then from memory","🧠 Después de memoria","🧠 Pagkatapos ay kabisado","🧠 ثم من الذاكرة"],
+"🙈 Notenblatt ausblenden":["🙈 Hide the score","🙈 Ocultar la partitura","🙈 Itago ang score","🙈 إخفاء النوتة"],
+"✓ Abschnitt sicher":["✓ Section secure","✓ Sección segura","✓ Kabisado ang seksyon","✓ المقطع متقن"],
+"⚠️ Fehler – später nochmal":["⚠️ Mistake — repeat later","⚠️ Error — repetir después","⚠️ Mali — ulitin mamaya","⚠️ خطأ — أعده لاحقاً"],
+"FREIMODUS":["FREE PLAY","MODO LIBRE","MALAYANG MODE","العزف الحر"],
+"Spiele einfach. Ich sage dir die Noten.":["Just play. I will tell you the notes.","Toca. Yo te diré las notas.","Tumugtog lang. Sasabihin ko ang mga nota.","اعزف فقط. سأخبرك بالنوتات."],
+"🗑 Verlauf löschen":["🗑 Clear history","🗑 Borrar historial","🗑 I-clear ang history","🗑 مسح السجل"],
+"🎼 Erkannte Töne":["🎼 Detected notes","🎼 Notas detectadas","🎼 Mga nakilalang nota","🎼 النوتات المكتشفة"],
+"Hier siehst du die letzten Töne, die dein Keyboard gespielt hat.":["Here you can see the last notes played on your keyboard.","Aquí ves las últimas notas que ha tocado tu teclado.","Dito makikita ang mga huling notang tinugtog ng keyboard mo.","هنا ترى آخر النوتات التي عزفها الكيبورد."],
+"🎹 Tastatur":["🎹 Keyboard","🎹 Teclado","🎹 Keyboard","🎹 لوحة المفاتيح"],
+"🎄 Schritt für Schritt bis Weihnachten · Victor's Piano Solo":["🎄 Step by step to Christmas · Victor's Piano Solo","🎄 Paso a paso hasta Navidad · Victor's Piano Solo","🎄 Hakbang-hakbang hanggang Pasko · Victor's Piano Solo","🎄 خطوة بخطوة حتى عيد الميلاد · Victor's Piano Solo"],
+"🎭 Auftrittsmodus starten":["🎭 Start performance mode","🎭 Iniciar modo de actuación","🎭 Simulan ang performance mode","🎭 بدء وضع الأداء"],
+"↩ Lernmodus":["↩ Learning mode","↩ Modo de aprendizaje","↩ Learning mode","↩ وضع التعلّم"],
+"🎼 Referenz einspielen":["🎼 Record reference","🎼 Grabar referencia","🎼 I-record ang reference","🎼 تسجيل المرجع"],
+"🗑 Referenz löschen":["🗑 Delete reference","🗑 Borrar referencia","🗑 Burahin ang reference","🗑 حذف المرجع"],
+"🎯 Letzter Ton":["🎯 Last note","🎯 Última nota","🎯 Huling nota","🎯 آخر نوتة"],
+"Warte auf einen Ton…":["Waiting for a note…","Esperando una nota…","Naghihintay ng nota…","في انتظار نوتة…"],
+"🎹 Gleichzeitig":["🎹 Simultaneously","🎹 Simultáneamente","🎹 Sabay-sabay","🎹 في الوقت نفسه"],
+"🎹 Keyboard verbinden":["🎹 Connect keyboard","🎹 Conectar teclado","🎹 Ikonekta ang keyboard","🎹 توصيل الكيبورد"],
+"🎹 Keyboard verbunden":["🎹 Keyboard connected","🎹 Teclado conectado","🎹 Nakakonekta ang keyboard","🎹 تم توصيل الكيبورد"],
+"Einleitung":["Introduction","Introducción","Panimula","مقدمة"],"Melodie & Begleitung":["Melody & accompaniment","Melodía y acompañamiento","Melodiya at accompaniment","اللحن والمصاحبة"],"Aufbau":["Development","Desarrollo","Pagbuo","تطوّر"],"Übergang":["Transition","Transición","Paglipat","انتقال"],"Steigerung":["Build-up","Aumento","Pagtaas","تصاعد"],"Neuer Abschnitt":["New section","Nueva sección","Bagong seksyon","مقطع جديد"],"Ritardando":["Ritardando","Ritardando","Ritardando","Ritardando"],"A tempo":["A tempo","A tempo","A tempo","A tempo"],"Crescendo":["Crescendo","Crescendo","Crescendo","Crescendo"],"Weiterführung":["Continuation","Continuación","Pagpapatuloy","استمرار"],"Neuer Taktteil":["New meter section","Nueva sección de compás","Bagong bahagi ng meter","جزء جديد من الميزان"],"Ruhiger Teil":["Quieter section","Sección tranquila","Mas tahimik na bahagi","مقطع هادئ"],"Schluss":["Ending","Final","Wakas","النهاية"],
+"rechte Hand":["right hand","mano derecha","kanang kamay","اليد اليمنى"],"linke Hand":["left hand","mano izquierda","kaliwang kamay","اليد اليسرى"],"beide Hände":["both hands","ambas manos","parehong kamay","كلتا اليدين"],"auswendig":["from memory","de memoria","kabisado","عن ظهر قلب"],
+"Piano-freier Start · Noten & Rhythmus":["Piano-free start · notes & rhythm","Inicio sin piano · notas y ritmo","Simula nang walang piano · nota at ritmo","بداية بدون بيانو · النوتات والإيقاع"],"Piano-Start":["Piano start","Inicio con piano","Simula sa piano","بدء البيانو"],"Zusammensetzen":["Putting hands together","Unir las manos","Pagsasama ng dalawang kamay","جمع اليدين معاً"],"Auswendig":["From memory","De memoria","Kabisado","من الذاكرة"],"Festigen":["Consolidation","Consolidación","Pagpapatibay","ترسيخ"],
+"Neue Noten langsam und sauber lernen":["Learn the new notes slowly and cleanly","Aprender las notas nuevas despacio y con precisión","Alamin ang bagong nota nang mabagal at malinis","تعلّم النوتات الجديدة ببطء ودقة"],
+"Begleitung kennenlernen, Rhythmus sichern und wiederholen":["Learn the accompaniment, secure the rhythm and repeat","Aprender el acompañamiento, asegurar el ritmo y repetir","Alamin ang accompaniment, panatilihin ang ritmo at ulitin","تعلّم المصاحبة وثبّت الإيقاع ثم كرر"],
+"Beide Hände langsam verbinden, Rhythmus halten und danach auswendig versuchen":["Put both hands together slowly, keep the rhythm, then try from memory","Une ambas manos despacio, mantén el ritmo y después inténtalo de memoria","Pagsamahin nang mabagal ang dalawang kamay, panatilihin ang ritmo, pagkatapos ay subukang kabisado","اجمع اليدين ببطء وحافظ على الإيقاع ثم جرّب من الذاكرة"],
+"Noten weg: Abschnitt aus dem Gedächtnis spielen und schwierige Stellen gezielt wiederholen":["Put the notes away: play the section from memory and repeat difficult spots deliberately","Aparta la partitura: toca la sección de memoria y repite las partes difíciles","Itabi ang notes: tugtugin ang seksyon mula sa memorya at ulitin ang mahihirap na bahagi","أبعد النوتة: اعزف المقطع من الذاكرة وكرر المواضع الصعبة"],
+"Gesamtstück + Übergänge":["Full piece + transitions","Pieza completa + transiciones","Buong piyesa + transitions","المقطوعة كاملة + الانتقالات"],"Gesamtstück + schwierige Stellen":["Full piece + difficult spots","Pieza completa + partes difíciles","Buong piyesa + mahihirap na bahagi","المقطوعة كاملة + المواضع الصعبة"],"Generalprobe":["Full run-through","Ensayo general","Buong performance rehearsal","بروفة كاملة"],
+"Komplett von Anfang bis Ende spielen, auswendig festigen, Übergänge üben und Fehlerstellen wiederholen":["Play the whole piece from start to finish, consolidate it from memory, practise transitions and repeat difficult spots","Toca toda la pieza de principio a fin, consolídala de memoria, practica las transiciones y repite los errores","Tugtugin ang buong piyesa mula simula hanggang dulo, patibayin ang memorya, sanayin ang transitions at ulitin ang mahihirap na bahagi","اعزف المقطوعة كاملة من البداية إلى النهاية، وثبّتها من الذاكرة، وتدرّب على الانتقالات وكرر المواضع الصعبة"],
+"Du musst noch keine Noten lesen können. Die Notenschule bringt dir die wichtigsten Grundlagen bei, bevor wir das Stück damit lernen.":["You do not need to be able to read music yet. The music school teaches you the most important basics before we use them to learn the piece.","Todavía no necesitas saber leer partituras. La escuela de música te enseña las bases más importantes antes de usarlas para aprender la pieza.","Hindi mo pa kailangang marunong magbasa ng nota. Ituturo sa iyo ng music school ang mahahalagang pundasyon bago natin gamitin ang mga ito sa pag-aaral ng piyesa.","لا تحتاج إلى معرفة قراءة النوتة بعد. تعلّمك مدرسة الموسيقى أهم الأساسيات قبل أن نستخدمها لتعلّم المقطوعة."],
+"Jeder Tag hat ein Ziel. Wenn du einen Abschnitt fehlerhaft spielst, wird er nach der Übung erneut eingeplant. Wenn du vor dem 24.12. fertig bist, werden die übrigen Tage zum Festigen des gesamten Stücks genutzt.":["Every day has a goal. If you play a section incorrectly, it is scheduled again after practice. If you finish before December 24, the remaining days are used to consolidate the whole piece.","Cada día tiene un objetivo. Si tocas una sección con errores, se volverá a programar después de la práctica. Si terminas antes del 24 de diciembre, los días restantes se utilizan para consolidar toda la pieza.","May layunin ang bawat araw. Kung mali ang pagtugtog mo sa isang seksyon, muli itong isasama sa iskedyul pagkatapos ng ensayo. Kung matapos ka bago ang Disyembre 24, gagamitin ang natitirang mga araw para patibayin ang buong piyesa.","لكل يوم هدف. إذا عزفت مقطعاً بشكل خاطئ، فسيُعاد جدوله بعد التمرين. وإذا انتهيت قبل 24 ديسمبر، فستُستخدم الأيام المتبقية لتثبيت المقطوعة كاملة."],
+"Die Webseite zeigt dir live den Ton, den dein Keyboard spielt.":["The app shows you the note your keyboard is playing live.","La aplicación te muestra en directo la nota que toca tu teclado.","Ipinapakita sa iyo ng app nang live ang notang tinutugtog ng keyboard mo.","يعرض لك التطبيق النوتة التي يعزفها الكيبورد مباشرة."],
+"Wenn du diesen Abschnitt mit Noten sicher kannst, nehmen wir das Blatt weg. Dann versuchst du denselben Takt aus dem Kopf.":["Once you can play this section securely with the score, we remove the sheet. Then you try the same measure from memory.","Cuando puedas tocar esta sección con seguridad usando la partitura, retiramos la hoja. Después intentas tocar el mismo compás de memoria.","Kapag kaya mo nang tugtugin nang maayos ang seksyong ito gamit ang notes, aalisin natin ang sheet. Pagkatapos, susubukan mong tugtugin ang parehong takt mula sa memorya.","عندما تتقن هذا المقطع مع النوتة، نزيل الورقة. ثم تحاول عزف الميزان نفسه من الذاكرة."]
+};
+// Extra dynamic strings used by the learning plan and Duolingo-style path.
+Object.assign(multi,{
+ "Vorbereitung":["Preparation","Preparación","Paghahanda","التحضير"],
+ "Piano-Start":["Piano start","Inicio con piano","Simula sa piano","بدء البيانو"],
+ "Notenlinien kennenlernen":["Getting to know the staff","Conocer el pentagrama","Pagkilala sa mga linya ng nota","التعرّف على المدرج الموسيقي"],
+ "Was sind Linien und Zwischenräume?":["What are lines and spaces?","¿Qué son las líneas y los espacios?","Ano ang mga linya at pagitan?","ما هي الخطوط والمسافات؟"],
+ "Violinschlüssel":["Treble clef","Clave de sol","Clef ng treble","مفتاح صول"],
+ "Die wichtigsten Noten der rechten Hand":["The most important notes for the right hand","Las notas más importantes de la mano derecha","Ang mahahalagang nota para sa kanang kamay","أهم نوتات اليد اليمنى"],
+ "C auf dem Klavier finden":["Find C on the piano","Encontrar C en el piano","Hanapin ang C sa piano","العثور على C على البيانو"],
+ "Note erkennen und Taste finden":["Recognize the note and find the key","Reconocer la nota y encontrar la tecla","Kilalanin ang nota at hanapin ang key","تعرّف على النوتة واعثر على المفتاح"],
+ "Noten lesen":["Read music","Leer notas","Magbasa ng nota","قراءة النوتات"],
+ "Linie oder Zwischenraum erkennen":["Recognize line or space","Reconocer línea o espacio","Kilalanin ang linya o pagitan","تحديد الخط أو المسافة"],
+ "Kreuze verstehen":["Understand sharps","Entender los sostenidos","Unawain ang mga sharp","فهم علامات الدييز"],
+ "Vorzeichen und schwarze Tasten":["Accidentals and black keys","Alteraciones y teclas negras","Mga aksidente at itim na key","علامات التحويل والمفاتيح السوداء"],
+ "Dein erster Notentest":["Your first music-reading test","Tu primera prueba de lectura musical","Ang una mong pagsusulit sa nota","اختبارك الأول في قراءة النوتات"],
+ "Zeige, was du schon kannst":["Show what you already know","Demuestra lo que ya sabes","Ipakita ang alam mo na","أظهر ما تعرفه بالفعل"],
+ "Victor · Takt 1–5":["Victor · Measures 1–5","Victor · Compases 1–5","Victor · Mga measure 1–5","Victor · الموازير 1–5"],
+ "Erste Noten aus deinem Stück":["First notes from your piece","Primeras notas de tu pieza","Mga unang nota mula sa piyesa mo","أول نوتات من مقطوعتك"],
+ "Takt 1–5 · rechte Hand":["Measures 1–5 · right hand","Compases 1–5 · mano derecha","Mga measure 1–5 · kanang kamay","الموازير 1–5 · اليد اليمنى"],
+ "Melodie langsam lernen":["Learn the melody slowly","Aprender la melodía despacio","Matutunan nang mabagal ang melodya","تعلّم اللحن ببطء"],
+ "Takt 1–5 · linke Hand":["Measures 1–5 · left hand","Compases 1–5 · mano izquierda","Mga measure 1–5 · kaliwang kamay","الموازير 1–5 · اليد اليسرى"],
+ "Begleitung kennenlernen":["Learn the accompaniment","Conocer el acompañamiento","Alamin ang accompaniment","تعلّم المصاحبة"],
+ "Takt 1–5 · beide Hände":["Measures 1–5 · both hands","Compases 1–5 · ambas manos","Mga measure 1–5 · parehong kamay","الموازير 1–5 · كلتا اليدين"],
+ "Zusammenführen":["Put them together","Unirlas","Pagsamahin ang mga ito","جمعهما معاً"],
+ "Takt 1–5 · auswendig":["Measures 1–5 · from memory","Compases 1–5 · de memoria","Mga measure 1–5 · kabisado","الموازير 1–5 · عن ظهر قلب"],
+ "Noten weg — aus dem Kopf":["Notes away — from memory","Sin partitura — de memoria","Itabi ang notes — mula sa memorya","أبعد النوتة — من الذاكرة"],
+ "Nächster Abschnitt":["Next section","Siguiente sección","Susunod na seksyon","المقطع التالي"],
+ "Weiterlernen":["Continue learning","Seguir aprendiendo","Magpatuloy sa pag-aaral","متابعة التعلّم"],
+ "Takt 6–9":["Measures 6–9","Compases 6–9","Mga measure 6–9","الموازير 6–9"],
+ "Takt 10–13":["Measures 10–13","Compases 10–13","Mga measure 10–13","الموازير 10–13"],
+ "Mo":["Mon","Lun","Lun","الاثنين"],"Di":["Tue","Mar","Mar","الثلاثاء"],"Mi":["Wed","Mié","Miy","الأربعاء"],"Do":["Thu","Jue","Huw","الخميس"],"Fr":["Fri","Vie","Biy","الجمعة"],"Sa":["Sat","Sáb","Sab","السبت"],"So":["Sun","Dom","Lin","الأحد"],
+ "Heute ist dein Klavier noch nicht da. Lies die ersten Noten und kläre den Rhythmus ohne Instrument – kein verpasster Klaviertag.":["Your piano is not here yet. Read the first notes and clarify the rhythm without an instrument — no missed piano day.","Hoy tu piano todavía no está. Lee las primeras notas y aclara el ritmo sin instrumento; no es un día de piano perdido.","Wala pa ang piano mo ngayon. Basahin ang mga unang nota at unawain ang ritmo nang walang instrumento — walang nawalang araw ng piano.","البيانو الخاص بك ليس هنا بعد. اقرأ النوتات الأولى وافهم الإيقاع دون آلة — لا يوجد يوم بيانو ضائع."],
+ "Heute kommt das Piano ins Spiel: erste Töne langsam mit Noten, Rhythmus und Takt-Uhr bei 40–50 BPM; später arbeiten wir uns bis zum Zieltempo 72 BPM hoch.":["Today the piano comes into play: first notes slowly with the score, rhythm and meter clock at 40–50 BPM; later we work up to the target tempo of 72 BPM.","Hoy entra en juego el piano: primeras notas despacio con partitura, ritmo y reloj de compases a 40–50 BPM; después subiremos hasta el tempo objetivo de 72 BPM.","Ngayon gagamitin na ang piano: unang mga nota nang mabagal kasama ang notes, ritmo at meter clock sa 40–50 BPM; pagkatapos ay aakyat tayo sa target na 72 BPM.","اليوم يدخل البيانو: النوتات الأولى ببطء مع النوتة والإيقاع وساعة الميزان عند 40–50 BPM؛ ثم نرفع السرعة تدريجياً إلى 72 BPM."]
+});
+for(const [k,v] of Object.entries(multi)){translations.en[k]=v[0]}
+const langCodes={en:0,es:1,fil:2,ar:3};
+/* Victor translation engine — additive repair: keeps the existing translation data and
+   also recognizes German, English, Spanish, Filipino and Arabic text already rendered
+   on the page. Unknown text is NEVER removed. */
+const extraUITranslations={
+ "Language":["Language","Idioma","Wika","اللغة"],
+ "Choose the interface language. Learning content and the daily plan are translated too.":["Choose the interface language. Learning content and the daily plan are translated too.","Elige el idioma de la interfaz. El contenido de aprendizaje y el plan diario también se traducen.","Piliin ang wika ng interface. Isinasalin din ang learning content at daily plan.","اختر لغة الواجهة. تتم ترجمة محتوى التعلّم والخطة اليومية أيضاً."],
+ "German":["German","Alemán","Aleman","الألمانية"],
+ "English":["English","Inglés","Ingles","الإنجليزية"],
+ "Spanish":["Spanish","Español","Espanyol","الإسبانية"],
+ "Filipino":["Filipino","Filipino","Filipino","الفلبينية"],
+ "Arabic":["Arabic","Árabe","Arabe","العربية"],
+ "Hands":["Hands","Manos","Mga kamay","اليدان"],
+ "Right hand":["Right hand","Mano derecha","Kanang kamay","اليد اليمنى"],
+ "Left hand":["Left hand","Mano izquierda","Kaliwang kamay","اليد اليسرى"],
+ "Both hands":["Both hands","Ambas manos","Parehong kamay","كلتا اليدين"],
+ "For main learning, I can increase the difficulty step by step.":["For main learning, I can increase the difficulty step by step.","Para el aprendizaje principal, puedo aumentar la dificultad paso a paso.","Para sa pangunahing pag-aaral, maaari kong dagdagan ang hirap nang paunti-unti.","في التعلّم الأساسي، يمكنني زيادة الصعوبة خطوة بخطوة."],
+ "William's notifications":["William's notifications","Notificaciones de William","Mga notification ni William","إشعارات William"],
+ "Enable notifications":["Enable notifications","Activar notificaciones","I-enable ang mga notification","تفعيل الإشعارات"],
+ "Let William say hello":["Let William say hello","Deja que William te salude","Hayaan si William na bumati","دع William يرحب بك"],
+ "Not activated yet.":["Not activated yet.","Todavía no está activado.","Hindi pa naka-enable.","لم يتم التفعيل بعد."],
+ "Greeting when opening":["Greeting when opening","Saludo al abrir","Pagbati sa pagbukas","الترحيب عند الفتح"],
+ "Remind me after 1 hour if I have not started":["Remind me after 1 hour if I have not started","Recuérdame después de 1 hora si todavía no he empezado","Paalalahanan ako pagkalipas ng 1 oras kung hindi pa ako nagsisimula","ذكّرني بعد ساعة إذا لم أبدأ"],
+ "Praise me after a completed exercise":["Praise me after a completed exercise","Felicítame después de completar un ejercicio","Purihin ako pagkatapos ng isang natapos na ehersisyo","امدحني بعد إكمال التمرين"],
+ "Reminder while I am away":["Reminder while I am away","Recordatorio mientras estoy ausente","Paalala habang wala ako","تذكير أثناء غيابي"],
+ "Time":["Time","Hora","Oras","الوقت"],
+ "Start":["Start","Iniciar","Simulan","بدء"],
+ "Settings":["Settings","Ajustes","Mga setting","الإعدادات"],
+ "Your learning path":["Your learning path","Tu ruta de aprendizaje","Iyong landas sa pag-aaral","مسار تعلّمك"],
+ "Like Duolingo: one small task at a time.":["Like Duolingo: one small task at a time.","Como en Duolingo: una pequeña tarea cada vez.","Parang Duolingo: isang maliit na gawain bawat hakbang.","مثل Duolingo: مهمة صغيرة في كل مرة."],
+ "Today's practice":["Today's practice","Práctica de hoy","Pagsasanay ngayong araw","تمرين اليوم"],
+ "Getting to know the staff":["Getting to know the staff","Conocer el pentagrama","Pagkilala sa mga linya ng nota","التعرّف على المدرج الموسيقي"],
+ "What are lines and spaces?":["What are lines and spaces?","¿Qué son las líneas y los espacios?","Ano ang mga linya at pagitan?","ما هي الخطوط والمسافات؟"],
+ "Treble clef":["Treble clef","Clave de sol","Clef ng treble","مفتاح صول"],
+ "The most important notes for the right hand":["The most important notes for the right hand","Las notas más importantes de la mano derecha","Ang mahahalagang nota para sa kanang kamay","أهم نوتات اليد اليمنى"],
+ "Find C on the piano":["Find C on the piano","Encontrar C en el piano","Hanapin ang C sa piano","العثور على C على البيانو"],
+ "Recognize the note and find the key":["Recognize the note and find the key","Reconocer la nota y encontrar la tecla","Kilalanin ang nota at hanapin ang key","تعرّف على النوتة واعثر على المفتاح"],
+ "Read music":["Read music","Leer notas","Magbasa ng nota","قراءة النوتات"],
+ "Recognize line or space":["Recognize line or space","Reconocer línea o espacio","Kilalanin ang linya o pagitan","تحديد الخط أو المسافة"],
+ "Understand sharps":["Understand sharps","Entender los sostenidos","Unawain ang mga sostenido","فهم علامات الدييز"],
+ "Accidentals and black keys":["Accidentals and black keys","Alteraciones y teclas negras","Mga accidentals at itim na key","علامات التحويل والمفاتيح السوداء"],
+ "Play whatever you want. The app shows which notes it detects.":["Play whatever you want. The app shows which notes it detects.","Toca lo que quieras. La aplicación muestra qué notas detecta.","Tumugtog ng kahit ano. Ipinapakita ng app kung aling mga nota ang nakikita nito.","اعزف ما تريد. يعرض التطبيق النوتات التي يكتشفها."],
+ "Main learning":["Main learning","Aprendizaje principal","Pangunahing pag-aaral","التعلّم الأساسي"],
+ "Practice":["Practice","Practicar","Magsanay","تدريب"],
+ "Free play":["Free play","Modo libre","Malayàng pagtugtog","العزف الحر"],
+ "Open learning plan":["Open learning plan","Abrir plan de aprendizaje","Buksan ang learning plan","فتح خطة التعلّم"],
+ "Learning plan":["Learning plan","Plan de aprendizaje","Learning plan","خطة التعلّم"],
+ "Overview":["Overview","Resumen","Buod","نظرة عامة"],
+ "Back":["Back","Atrás","Bumalik","رجوع"],
+ "Next →":["Next →","Siguiente →","Susunod →","التالي →"],
+ "Today: section":["Today: section","Hoy: sección","Ngayon: seksyon","اليوم: المقطع"],
+ "Measures 1–5":["Measures 1–5","Compases 1–5","Mga measure 1–5","الموازير 1–5"],
+ "Introduction":["Introduction","Introducción","Panimula","مقدمة"],
+ "Play slowly and pay attention to both hands.":["Play slowly and pay attention to both hands.","Toca despacio y presta atención a ambas manos.","Tumugtog nang mabagal at bigyang-pansin ang dalawang kamay.","اعزف ببطء وانتبه إلى كلتا اليدين."],
+ "Only the current score section is shown.":["Only the current score section is shown.","Solo se muestra la sección actual de la partitura.","Ang kasalukuyang bahagi lamang ng score ang ipinapakita.","يتم عرض مقطع النوتة الحالي فقط."],
+ "Choose a measure":["Choose a measure","Elegir un compás","Pumili ng measure","اختر ميزاناً"],
+ "Meter clock / tempo":["Meter clock / tempo","Reloj de compás / tempo","Meter clock / tempo","ساعة الميزان / السرعة"],
+ "Start microphone":["Start microphone","Iniciar micrófono","Simulan ang mikropono","تشغيل الميكروفون"],
+ "Microphone not started":["Microphone not started","Micrófono no iniciado","Hindi pa nagsisimula ang mikropono","لم يبدأ الميكروفون بعد"],
+ "Next step":["Next step","Siguiente paso","Susunod na hakbang","الخطوة التالية"],
+ "Then from memory":["Then from memory","Después de memoria","Pagkatapos ay kabisado","ثم من الذاكرة"],
+ "Hide the score":["Hide the score","Ocultar la partitura","Itago ang score","إخفاء النوتة"],
+ "Section secure":["Section secure","Sección segura","Kabisado ang seksyon","المقطع متقن"],
+ "Mistake — repeat later":["Mistake — repeat later","Error — repetir después","Mali — ulitin mamaya","خطأ — أعده لاحقاً"],
+ "Detected notes":["Detected notes","Notas detectadas","Mga nakilalang nota","النوتات المكتشفة"],
+ "Keyboard":["Keyboard","Teclado","Keyboard","لوحة المفاتيح"],
+ "Start performance mode":["Start performance mode","Iniciar modo de actuación","Simulan ang performance mode","بدء وضع الأداء"],
+ "Learning mode":["Learning mode","Modo de aprendizaje","Learning mode","وضع التعلّم"],
+ "Record reference":["Record reference","Grabar referencia","I-record ang reference","تسجيل المرجع"],
+ "Delete reference":["Delete reference","Borrar referencia","Burahin ang reference","حذف المرجع"],
+ "Last note":["Last note","Última nota","Huling nota","آخر نوتة"],
+ "Waiting for a note…":["Waiting for a note…","Esperando una nota…","Naghihintay ng nota…","في انتظار نوتة…"],
+ "Simultaneously":["Simultaneously","Simultáneamente","Sabay-sabay","في الوقت نفسه"],
+ "Connect keyboard":["Connect keyboard","Conectar teclado","Ikonekta ang keyboard","توصيل الكيبورد"],
+ "Keyboard connected":["Keyboard connected","Teclado conectado","Nakakonekta ang keyboard","تم توصيل الكيبورد"],
+ "No MIDI keyboard found.":["No MIDI keyboard found.","No se encontró ningún teclado MIDI.","Walang MIDI keyboard na nakita.","لم يتم العثور على لوحة MIDI."],
+ "Notifications were blocked in the browser. You can allow them again in the website settings.":["Notifications were blocked in the browser. You can allow them again in the website settings.","Las notificaciones están bloqueadas en el navegador. Puedes volver a permitirlas en los ajustes del sitio web.","Naka-block ang mga notification sa browser. Maaari mo itong payagan muli sa mga setting ng website.","تم حظر الإشعارات في المتصفح. يمكنك السماح بها مرة أخرى من إعدادات الموقع."],
+ "William can greet you, remind you to practise after an hour and congratulate you after a completed exercise. You decide what is active.":["William can greet you, remind you to practise after an hour and congratulate you after a completed exercise. You decide what is active.","William puede saludarte, recordarte que practiques después de una hora y felicitarte al completar un ejercicio. Tú decides qué está activo.","Maaaring bumati si William, paalalahanan kang magsanay pagkalipas ng isang oras at batiin ka pagkatapos ng ehersisyo. Ikaw ang pumipili kung ano ang aktibo.","يمكن لـ William أن يرحب بك ويذكّرك بالتدرب بعد ساعة ويهنئك بعد إكمال التمرين. أنت تقرر ما هو نشط."]
+};
+
+/* Build one canonical table containing every existing language variant. */
+/* English completion patch: exact source strings used by the live UI. */
+Object.assign(extraUITranslations,{
+ "Benachrichtigungen wurden im Browser blockiert. Du kannst sie in den Website-Einstellungen wieder erlauben.":["Notifications were blocked by the browser. You can allow them again in the website settings.","El navegador bloqueó las notificaciones. Puedes volver a permitirlas en la configuración del sitio web.","Na-block ng browser ang mga notification. Maaari mong payagan muli ang mga ito sa mga setting ng website.","تم حظر الإشعارات في المتصفح. يمكنك السماح بها مرة أخرى من إعدادات الموقع."],
+ "Hinweis: Für echte System-Benachrichtigungen braucht der Browser deine Erlaubnis. Auf dem Handy funktionieren Hintergrund-Benachrichtigungen zuverlässig nur mit einer HTTPS/PWA-Version der Seite.":["Note: Real system notifications require browser permission. On phones, reliable background notifications generally require an HTTPS/PWA version of the site.","Nota: Las notificaciones reales del sistema requieren permiso del navegador. En el móvil, las notificaciones en segundo plano fiables generalmente requieren una versión HTTPS/PWA del sitio.","Tandaan: Kailangan ng pahintulot ng browser para sa totoong system notifications. Sa telepono, karaniwang kailangan ng HTTPS/PWA version ng site para sa maaasahang background notifications.","ملاحظة: تتطلب إشعارات النظام الحقيقية إذن المتصفح. على الهاتف، تتطلب إشعارات الخلفية الموثوقة عادةً إصدار HTTPS/PWA من الموقع."],
+ "Dieser Browser unterstützt keine Web-Benachrichtigungen.":["This browser does not support web notifications.","Este navegador no admite notificaciones web.","Hindi sinusuportahan ng browser na ito ang web notifications.","هذا المتصفح لا يدعم إشعارات الويب."],
+ "Für System-Benachrichtigungen muss diese Seite über HTTPS geöffnet werden (nicht direkt als .html-Datei). ":["For system notifications, this page must be opened over HTTPS (not directly as an .html file). ","Para las notificaciones del sistema, esta página debe abrirse mediante HTTPS (no directamente como archivo .html). ","Para sa system notifications, kailangang buksan ang page na ito gamit ang HTTPS (hindi direkta bilang .html file). ","لإشعارات النظام، يجب فتح هذه الصفحة عبر HTTPS (وليس مباشرةً كملف .html). "],
+ "🌿 William ist bereit.":["🌿 William is ready.","🌿 William está listo.","🌿 Handa na si William.","🌿 William جاهز."],
+ "Die Berechtigung wurde nicht erteilt.":["Permission was not granted.","No se concedió el permiso.","Hindi ibinigay ang pahintulot.","لم يتم منح الإذن."],
+ "Ich wähle dir eine kleine, sinnvolle Aufgabe vor, damit du das Stück Schritt für Schritt auswendig lernst.":["I choose a small, meaningful task so you can learn the piece step by step from memory.","Elijo una tarea pequeña y útil para que aprendas la pieza paso a paso de memoria.","Pipili ako ng maliit at makabuluhang gawain para matutunan mo ang piyesa nang paunti-unti mula sa memorya.","أختار لك مهمة صغيرة ومفيدة لتتعلم المقطوعة خطوة بخطوة عن ظهر قلب."],
+ "William kann dich begrüßen, dich nach einer Stunde ans Üben erinnern und dir nach einer abgeschlossenen Übung gratulieren. Du entscheidest selbst, was aktiv ist.":["William can greet you, remind you to practice after an hour, and congratulate you after you complete an exercise. You decide what is active.","William puede saludarte, recordarte que practiques después de una hora y felicitarte cuando completes un ejercicio. Tú decides qué está activo.","Maaaring bumati sa iyo si William, paalalahanan kang magsanay pagkatapos ng isang oras, at batiin ka pagkatapos mong matapos ang isang ehersisyo. Ikaw ang pumipili kung ano ang aktibo.","يمكن لـ William أن يرحب بك، ويذكّرك بالتدرب بعد ساعة، ويهنئك بعد إكمال التمرين. أنت من يقرر ما هو مفعّل."],
+ "Benachrichtigungen wurden im Browser blockiert. Du kannst sie in den Website-Einstellungen wieder erlauben.":["Notifications were blocked by the browser. You can allow them again in the website settings.","El navegador bloqueó las notificaciones. Puedes volver a permitirlas en la configuración del sitio web.","Na-block ng browser ang mga notification. Maaari mong payagan muli ang mga ito sa mga setting ng website.","تم حظر الإشعارات في المتصفح. يمكنك السماح بها مرة أخرى من إعدادات الموقع."],
+ "Hinweis: Für echte System-Benachrichtigungen braucht der Browser deine Erlaubnis. Auf dem Handy funktionieren Hintergrund-Benachrichtigungen je nach Browser und Systemeinstellungen unterschiedlich.":["Note: Real system notifications require browser permission. On phones, background notifications may work differently depending on the browser and system settings.","Nota: Las notificaciones reales del sistema requieren permiso del navegador. En el móvil, las notificaciones en segundo plano pueden funcionar de forma diferente según el navegador y la configuración del sistema.","Tandaan: Kailangan ng pahintulot ng browser para sa totoong system notifications. Sa telepono, maaaring magkaiba ang background notifications depende sa browser at system settings.","ملاحظة: تتطلب إشعارات النظام الحقيقية إذن المتصفح. على الهاتف، قد تعمل الإشعارات في الخلفية بشكل مختلف حسب المتصفح وإعدادات النظام."],
+ "Du wiederholst einen Abschnitt, den du schon gelernt hast. Perfekt zum Festigen.":["You repeat a section you have already learned. Perfect for reinforcing it.","Repites una sección que ya has aprendido. Perfecto para consolidarla.","Uulitin mo ang isang seksyong natutunan mo na. Perpekto para mapatatag ito.","تكرر مقطعًا تعلمته بالفعل. مثالي لتثبيته."],
+ "Spiele einfach auf deinem Keyboard. Ich zeige dir live, welche Noten ich erkenne.":["Just play on your keyboard. I will show you live which notes I detect.","Toca simplemente en tu teclado. Te mostraré en directo qué notas detecto.","Tumugtog lang sa keyboard mo. Ipapakita ko nang live kung anong mga nota ang nakikilala ko.","اعزف فقط على لوحة المفاتيح. سأعرض لك مباشرةً النغمات التي أتعرف عليها."]
+});
+
+Object.assign(multi,{
+  'Hinweis: Für echte System-Benachrichtigungen braucht der Browser deine Erlaubnis. Auf dem Handy funktionieren Hintergrund-Benachrichtigungen zuverlässig nur mit einer HTTPS/PWA-Version der Seite.':['Note: Real system notifications require browser permission. On phones, reliable background notifications generally require an HTTPS/PWA version of the site.','Nota: Las notificaciones reales del sistema requieren permiso del navegador. En el móvil, las notificaciones en segundo plano fiables generalmente requieren una versión HTTPS/PWA del sitio.','Tandaan: Kailangan ng pahintulot ng browser para sa totoong system notifications. Sa telepono, ang maaasahang background notifications ay karaniwang nangangailangan ng HTTPS/PWA version ng site.','ملاحظة: تتطلب إشعارات النظام الحقيقية إذن المتصفح. على الهاتف، تتطلب إشعارات الخلفية الموثوقة عادةً إصدار HTTPS/PWA من الموقع.']
+});
+
+const allTranslations={};
+for(const [de,vals] of Object.entries(multi)){
+  allTranslations[de]=vals;
+}
+for(const [en,vals] of Object.entries(extraUITranslations)){
+  allTranslations[en]=vals;
+}
+const victorLangCodes={en:0,es:1,fil:2,ar:3};
+function buildDict(lang){
+  const d={};
+  for(const [key,vals] of Object.entries(allTranslations)){
+    if(lang==='de') d[key]=key;
+    else d[key]=vals[victorLangCodes[lang]] ?? vals[0] ?? key;
+  }
+  return d;
+}
+function setLanguage(lang){
+  localStorage.setItem('victorLang',lang);
+  document.documentElement.lang=lang==='fil'?'fil':lang;
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  translateDynamic();
+  document.querySelectorAll('[id^="lang"]').forEach(b=>b.classList.remove('primary'));
+  $('lang'+({de:'De',en:'En',es:'Es',fil:'Fil',ar:'Ar'}[lang]||'De'))?.classList.add('primary');
+}
+function translateDynamic(){
+  const lang=localStorage.getItem('victorLang')||'de';
+  if(!['de','en','es','fil','ar'].includes(lang)) return;
+  const target=lang==='de'?0:victorLangCodes[lang];
+  /* Reverse index: whatever language is currently visible can be used as the source. */
+  const reverse=new Map();
+  for(const [canonical,vals] of Object.entries(allTranslations)){
+    const candidates=[canonical,...vals.filter(Boolean)];
+    const unique=[...new Set(candidates)];
+    const targetValue=lang==='de'?canonical:(vals[target]??vals[0]??canonical);
+    for(const c of unique) reverse.set(c.trim(),targetValue);
+  }
+  const translateText=(raw)=>{
+    if(!raw) return raw;
+    const leading=(raw.match(/^\s*/)||[''])[0], trailing=(raw.match(/\s*$/)||[''])[0];
+    const core=raw.trim(); if(!core)return raw;
+    if(reverse.has(core)) return leading+reverse.get(core)+trailing;
+    /* Handle generated labels such as "Victor · ..." and "0 / ..." without
+       changing numeric progress values that are not actually translatable. */
+    for(const [from,to] of reverse.entries()){
+      if(core.startsWith(from+' · ')) return leading+to+core.slice(from.length)+trailing;
+      if(core.startsWith(from+' — ')) return leading+to+core.slice(from.length)+trailing;
+    }
+    return raw;
+  };
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  const nodes=[];let n;while((n=walker.nextNode()))nodes.push(n);
+  for(const node of nodes){
+    const el=node.parentElement;
+    if(!el||['SCRIPT','STYLE','NOSCRIPT'].includes(el.tagName))continue;
+    /* William's notification status is translated by notifTranslate().
+       Keep the generic translation engine away from it so it cannot
+       re-translate an already translated status into another language. */
+    if(el.closest && el.closest('#notificationStatus')) continue;
+    const out=translateText(node.nodeValue||'');
+    if(out!==node.nodeValue)node.nodeValue=out;
+  }
+  document.querySelectorAll('body *').forEach(el=>{
+    if(el.id==='notificationStatus' || (el.closest && el.closest('#notificationStatus'))) return;
+    for(const a of ['title','aria-label','placeholder']){
+      const v=el.getAttribute(a);if(!v)continue;
+      const out=translateText(v);if(out!==v)el.setAttribute(a,out);
+    }
+  });
+}
+const _renderPlanWeek=renderPlanWeek;renderPlanWeek=function(){_renderPlanWeek();setTimeout(translateDynamic,0)};
+const _renderSchool=renderSchool;renderSchool=function(){_renderSchool();setTimeout(translateDynamic,0)};
+const _renderLearnPath=renderLearnPath;renderLearnPath=function(){_renderLearnPath();setTimeout(translateDynamic,0)};
+const _updateHome=updateHome;updateHome=function(){_updateHome();setTimeout(translateDynamic,0)};
+function updateLanguageButtons(lang){const map={de:'langDe',en:'langEn',es:'langEs',fil:'langFil',ar:'langAr'};document.querySelectorAll('#langDe,#langEn,#langEs,#langFil,#langAr').forEach(b=>b.classList.toggle('primary',b.id===map[lang]))}
+function applyVictorLanguage(lang){if(!['de','en','es','fil','ar'].includes(lang))lang='de';localStorage.setItem('victorLang',lang);document.documentElement.lang=lang==='fil'?'fil':lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';translateDynamic();updateLanguageButtons(lang);setTimeout(translateDynamic,0);setTimeout(translateDynamic,80);setTimeout(translateDynamic,250)}
+$('langDe')?.addEventListener('click',()=>applyVictorLanguage('de'));
+$('langEn')?.addEventListener('click',()=>applyVictorLanguage('en'));
+$('langEs')?.addEventListener('click',()=>applyVictorLanguage('es'));
+$('langFil')?.addEventListener('click',()=>applyVictorLanguage('fil'));
+$('langAr')?.addEventListener('click',()=>applyVictorLanguage('ar'));
+let victorTranslationTimer=0;
+const victorTranslationObserver=new MutationObserver(()=>{if(victorTranslationTimer)return;victorTranslationTimer=setTimeout(()=>{victorTranslationTimer=0;translateDynamic();updateLanguageButtons(localStorage.getItem('victorLang')||'de')},20)});
+if(document.body)victorTranslationObserver.observe(document.body,{subtree:true,childList:true,characterData:true});
+window.addEventListener('load',()=>{const lang=localStorage.getItem('victorLang')||'de';setTimeout(()=>applyVictorLanguage(lang),0)});
+if(localStorage.getItem('victorLang')&&localStorage.getItem('victorLang')!=='de')setTimeout(()=>applyVictorLanguage(localStorage.getItem('victorLang')),0);
+</script>
+<style id="victorFinalFixes">
+.performance-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.performance-bar button{flex:1;min-width:150px}
+.performance-active .card:not(.performance-main),.performance-active header,.performance-active footer{display:none!important}
+.performance-active main{max-width:1000px}.performance-active #lesson{display:block!important}
+.performance-active #sessionTimerCard{display:none}.performance-active .score-crop{height:310px!important}
+.detect-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.detect-chip{padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.16)}
+.reference-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.reference-bar button{flex:1;min-width:180px}.reference-status{margin-top:8px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.detect-grid{grid-template-columns:1fr}.reference-bar{flex-direction:column}}
+</style>
+<script id="victorFinalLogic">
+(function(){
+ const V={midiAccess:null,midiInputs:[],held:new Set(),memoryEvents:[],performance:false,lastMidi:0,reference:[],recording:false,attempt:[],attemptStart:0,referenceKey:''};
+ window.VictorFinal=V; const $=id=>document.getElementById(id); const setText=(id,t)=>{const e=$(id);if(e)e.textContent=t};
+ function currentKey(){return 'victorReference_'+state.section+'_'+String(state.hand||'Beide Hände').replace(/\s+/g,'_')}
+ function loadReference(){V.referenceKey=currentKey();try{V.reference=JSON.parse(localStorage.getItem(V.referenceKey)||'[]')}catch(e){V.reference=[]}}
+ function saveReference(){if(V.reference.length)localStorage.setItem(V.referenceKey,JSON.stringify(V.reference))}
+ function addLessonUI(){
+  const actions=document.querySelector('#lesson .card .actions');
+  if(actions&&!$('lessonMidi')){const m=document.createElement('button');m.id='lessonMidi';m.textContent='🎹 Keyboard verbinden';actions.appendChild(m);m.onclick=()=>V.connectMIDI()}
+  const card=document.querySelector('#lesson .card:last-of-type');
+  if(card&&!$('performanceBar')){const bar=document.createElement('div');bar.id='performanceBar';bar.className='performance-bar';bar.innerHTML='<button id="performanceStart">🎭 Auftrittsmodus starten</button><button id="performanceStop" style="display:none">↩ Lernmodus</button>';card.appendChild(bar);$('performanceStart').onclick=()=>V.startPerformance();$('performanceStop').onclick=()=>V.stopPerformance()}
+  if(card&&!$('referenceBar')){const bar=document.createElement('div');bar.id='referenceBar';bar.className='reference-bar';bar.innerHTML='<button id="referenceStart">🎼 Referenz einspielen</button><button id="referenceClear">🗑 Referenz löschen</button><div id="referenceStatus" class="reference-status"></div>';card.appendChild(bar);$('referenceStart').onclick=()=>V.toggleReference();$('referenceClear').onclick=()=>{V.reference=[];localStorage.removeItem(currentKey());V.updateReferenceStatus()}}
+  const h=document.querySelector('#lesson .card h2');if(h&&h.textContent.includes('Ich höre mit')&&!$('detectGrid')){const g=document.createElement('div');g.id='detectGrid';g.className='detect-grid';g.innerHTML='<div class="detect-chip"><strong>🎯 Letzter Ton</strong><div id="lastCorrectness">Warte auf einen Ton…</div></div><div class="detect-chip"><strong>🎹 Gleichzeitig</strong><div id="detectedChord">—</div></div>';h.parentElement.appendChild(g)}
+  loadReference();V.updateReferenceStatus();
+ }
+ V.updateReferenceStatus=function(){const e=$('referenceStatus');if(!e)return;e.textContent=V.recording?'🔴 Referenzaufnahme läuft – spiele den Abschnitt vollständig mit Noten.':V.reference.length?'🟢 Referenz gespeichert: '+V.reference.length+' Töne für '+state.hand+'.':'⚪ Für genaue Fehler-/Auslassungsprüfung zuerst „Referenz einspielen“ verwenden.'}
+ V.connectMIDI=async function(){if(!navigator.requestMIDIAccess){setText('lessonStatus','MIDI wird in diesem Browser nicht unterstützt.');return false}try{V.midiAccess=await navigator.requestMIDIAccess();V.midiInputs=[...V.midiAccess.inputs.values()];V.midiInputs.forEach(i=>i.onmidimessage=V.onMIDI);const names=V.midiInputs.map(x=>x.name||'Keyboard').join(', ');setText('lessonStatus',V.midiInputs.length?'🎹 Keyboard verbunden: '+names:'Kein MIDI-Keyboard gefunden.');const b=$('lessonMidi');if(b)b.textContent=V.midiInputs.length?'🎹 Keyboard verbunden':'🎹 Keyboard verbinden';return !!V.midiInputs.length}catch(e){setText('lessonStatus','MIDI-Verbindung konnte nicht geöffnet werden.');return false}}
+ V.onMIDI=function(ev){const d=ev.data||[],s=d[0]&0xf0,n=d[1],v=d[2]||0;if(s===0x90&&v>0){V.held.add(n);if(V.recording)V.reference.push({midi:n,t:Date.now()-V.attemptStart});V.registerNotes([n],'MIDI')}else if(s===0x80||(s===0x90&&v===0))V.held.delete(n)}
+ V.registerNotes=function(midis,source){const clean=[...new Set(midis)].filter(n=>n>=21&&n<=108).sort((a,b)=>a-b);if(!clean.length)return;const names=clean.map(pitchName),now=performance.now();if(source==='MIDI'&&now-V.lastMidi<35)return;V.lastMidi=now;if(lessonMemoryTest&&!V.recording)V.attempt.push({midis:clean,t:Date.now()-V.attemptStart});state.memoryAttempted=true;setText('lessonDetected',names.join(' + '));setText('detectedChord',names.join(' + '));setText('lastCorrectness',V.reference.length&&!V.recording?V.compareLive(clean):clean.length>1?'Mehrere Töne gleichzeitig erkannt.':'Ton erkannt.');if(!V.performance){setText('lessonMessage',clean.length>1?'🎹 Akkord erkannt: '+names.join(' + '):'🎯 Ton erkannt: '+names[0]);const lm=$('lessonMessage');if(lm)lm.className='notice good'}}
+ V.compareLive=function(midis){if(!V.reference.length)return 'Ton erkannt – keine Referenz vorhanden.';const t=Date.now()-V.attemptStart,near=V.reference.filter(x=>Math.abs(x.t-t)<=220),expected=new Set(near.map(x=>x.midi)),played=new Set(midis),wrong=[...played].filter(n=>!expected.has(n));if(wrong.length)return '❌ Falscher Ton: '+wrong.map(pitchName).join(', ');const missing=[...expected].filter(n=>!played.has(n));if(missing.length)return '⚠️ Fehlt: '+missing.map(pitchName).join(', ');return '✅ Richtig: '+midis.map(pitchName).join(' + ')}
+ V.toggleReference=async function(){if(!V.recording){if(!V.midiInputs.length&&!await V.connectMIDI())return;V.reference=[];V.recording=true;V.attemptStart=Date.now();const b=$('referenceStart');if(b)b.textContent='⏹ Referenz stoppen';V.updateReferenceStatus();setText('lessonStatus','🎼 Referenzaufnahme läuft. Spiele den Abschnitt mit den Noten.')}else{V.recording=false;V.reference.sort((a,b)=>a.t-b.t);saveReference();const b=$('referenceStart');if(b)b.textContent='🎼 Referenz neu einspielen';V.updateReferenceStatus();setText('lessonStatus','🟢 Referenz gespeichert. Falsche und ausgelassene Töne können jetzt erkannt werden.')}}
+ function evaluate(){if(!V.reference.length)return{ready:false,score:0,missing:0,wrong:0};const used=new Set();let matched=0,wrong=0;for(const ev of V.attempt){let bi=-1,bd=261;V.reference.forEach((r,i)=>{if(used.has(i)||r.midi!==ev.midis[0])return;const d=Math.abs(r.t-ev.t);if(d<bd){bd=d;bi=i}});if(bi>=0){used.add(bi);matched++}else wrong++}const missing=V.reference.length-used.size,total=V.reference.length;return{ready:true,score:Math.max(0,Math.round((matched-wrong*.7)/total*100)),missing,wrong}}
+ V.startPerformance=function(){V.performance=true;document.body.classList.add('performance-active');if($('performanceStart'))$('performanceStart').style.display='none';if($('performanceStop'))$('performanceStop').style.display='block';if($('scoreCrop'))$('scoreCrop').classList.add('hidden');if($('hideLessonScore'))$('hideLessonScore').style.display='none';if($('sessionTimerCard'))$('sessionTimerCard').style.display='none';setText('lessonMessage','🎭 Auftrittsmodus – keine Lernhinweise. Spiele den Abschnitt vollständig.')}
+ V.stopPerformance=function(){V.performance=false;document.body.classList.remove('performance-active');if($('performanceStart'))$('performanceStart').style.display='';if($('performanceStop'))$('performanceStop').style.display='none';if($('hideLessonScore'))$('hideLessonScore').style.display='';if($('sessionTimerCard'))$('sessionTimerCard').style.display='';setText('lessonMessage','Lernmodus wieder aktiv.')}
+ V.finishMemory=function(){const r=evaluate();if(!r.ready){setText('lessonMessage','🎼 Für den automatischen Auswendig-Test fehlt noch die Referenz. Spiele den Abschnitt einmal mit Noten über „Referenz einspielen“.');return false}state.memoryAttempted=V.attempt.length>0;state.memoryScore=r.score;state.memoryMissing=r.missing;state.memoryWrong=r.wrong;setText('lessonMessage',r.score>=80&&r.missing<=Math.max(1,Math.ceil(V.reference.length*.1))?'🟢 Auswendig-Test bestanden: '+r.score+'% richtig.':'🔴 Auswendig-Test: '+r.score+'% · '+r.wrong+' falsche · '+r.missing+' ausgelassene Töne.');return true}
+ function replaceDone(){const b=$('markDone');if(!b)return;const n=b.cloneNode(true);b.replaceWith(n);n.onclick=function(){if(!lessonMemoryTest){beginMemoryTest();V.attempt=[];V.attemptStart=Date.now();setText('lessonMessage',V.reference.length?'🧠 Noten ausgeblendet. Spiele jetzt auswendig. Danach „Auswendig prüfen“.':'🎼 Für die genaue Prüfung zuerst eine Referenz aufnehmen.');return}if(!V.finishMemory())return;const r=evaluate();if(!state.memoryAttempted)return;if(r.score<80||r.missing>Math.max(1,Math.ceil(V.reference.length*.1))){state.retry.add(state.section);localStorage.setItem('victorRetrySections',JSON.stringify([...state.retry]));lessonMemoryTest=false;setText('lessonMessage','🔴 Noch nicht sicher genug. '+r.wrong+' falsche, '+r.missing+' ausgelassene Töne. Abschnitt wird wiederholt.');return}recordPracticeDay();state.retry.delete(state.section);localStorage.setItem('victorRetrySections',JSON.stringify([...state.retry]));state.done.add(state.section);notifyPraise();renderProgress();state.retryNow=false;state.pendingRetry=state.retry.size>0;lessonMemoryTest=false;setText('lessonMessage','🟢 Auswendig bestanden! '+r.score+'% richtig – Abschnitt ist sicher gespeichert.');const lm=$('lessonMessage');if(lm)lm.className='notice good'}}
+ V.refreshTranslation=function(){translateDynamic()}
+ addLessonUI();replaceDone();V.refreshTranslation();
+ const oldPrepare=window.prepareLesson;window.prepareLesson=function(){oldPrepare();addLessonUI();V.attempt=[];V.attemptStart=Date.now();if(V.performance)V.stopPerformance();V.refreshTranslation()};
+ const oldLang=window.setLanguage;window.setLanguage=function(lang){oldLang(lang);setTimeout(V.refreshTranslation,0)};
+})();
+</script></body>
+</html>
